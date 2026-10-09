@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.montserratMedium {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.montserratBold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.montserratExtraBold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.fontopensans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.poppinsMedium {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.poppinsBold {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.poppinsExtraBold {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+/* !-----------------about intro-------------------- */
+
+.aboutIntro {
+    text-wrap: pretty;
+}
+
+@media (min-width: 1024px) {
+    .aboutIntro p {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* !-----------------container-------------------- */
+
+@media (min-width: 1370px) {
+    .page_containerWidth {
+        width: 1366px !important;
+        margin: 0 auto !important;
+        align-self: center !important;
+    }
+}

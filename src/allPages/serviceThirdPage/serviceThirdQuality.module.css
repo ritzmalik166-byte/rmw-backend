@@ -1,0 +1,88 @@
+.serviceCardsMain{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 16px;
+    margin-top: 40px;
+}
+
+.serviceCard {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 8%;
+    padding: 30px;
+    flex-wrap: wrap;
+    border-radius: 12px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .serviceContent h3{
+    font-size: 24px;
+    text-align: left;
+  }
+  .serviceContent p{
+    font-size: 22px;
+    text-align: left;
+  }
+  /* Default: Even index -> Image left, Content right */
+  .row {
+    flex-direction: row;
+  }
+
+  .row p{
+    text-align: left;
+  }
+
+  .row h3{
+    text-align: left;
+  }
+  
+  /* Odd index -> Image right, Content left */
+  .rowReverse {
+    flex-direction: row-reverse;
+  }
+
+  .rowReverse p{
+    text-align: right;
+  }
+
+  .rowReverse h3{
+    text-align: right;
+  }
+  
+  /* 📱 Responsive: Below 1000px, Always Center Align */
+  @media (max-width: 980px) {
+    .serviceCard {
+      flex-direction: column !important;
+      text-align: center;
+      gap: 20px;
+    }
+    .serviceContent h3{
+      font-size: 23px;
+      text-align: left;
+    }
+    .serviceContent p{
+      font-size: 21px;
+      text-align: left;
+    }
+
+  }
+
+  @media (max-width: 581px) {
+    .serviceContent h3{
+      font-size: 22px;
+      text-align: left;
+    }
+    .serviceContent p{
+      font-size: 19px;
+      text-align: left;
+    }
+    .serviceCard{
+      padding: 3px;
+    }
+  }
+

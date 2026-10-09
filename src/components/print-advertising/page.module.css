@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.slideIn {
+    animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slideLeft {
+    animation: slideLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideLeft {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 80%;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        clip-path: inset(100% 0 0 0);
+    }
+
+    to {
+        transform: translateY(0);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+.clientSlider {
+    animation: clientSlider 30s linear infinite;
+    will-change: transform;
+}
+
+.clientSlider:hover {
+    animation-play-state: paused;
+}
+
+@keyframes clientSlider {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-33.333%);
+    }
+}
+
+.fontmontserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.fontopensans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.fontpoppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.containerWidth {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .containerWidth {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+}
+
+
+
+@media (min-width: 1024px) and (max-width: 1379px) {
+    .containerWidth {
+        padding-left: 50px !important;
+        padding-right: 50px !important;
+    }
+}
+
+@media (min-width: 1370px) {
+    .containerWidth {
+        width: 1300px !important;
+        margin: 0 auto !important;
+        align-self: center !important;
+    }
+}
+
+@media (min-width: 1370px) {
+    .containerWidth2 {
+        width: 1300px !important;
+        margin: 0 auto !important;
+        align-self: center !important;
+        padding: 0px 0px !important;
+    }
+}
+
+/* Swiper Testimonial Styles */
+.testimonialSwiper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.testimonialSwiper :global(.swiper-wrapper) {
+    align-items: stretch;
+}
+
+.testimonialSwiper :global(.swiper-slide) {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hide default Swiper navigation arrows since we're using custom buttons */
+.testimonialSwiper :global(.swiper-button-next),
+.testimonialSwiper :global(.swiper-button-prev) {
+    display: none !important;
+}
+
+/* Section4 Cards Container - 3 cards per row on lg screens */
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* For md to lg: Make cards take 50% width (2 per row) */
+/* Gap is 1.5rem (24px) at md, so 1 gap = 24px between 2 cards */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .cardsContainer :global(article) {
+        width: calc((100% - 1.5rem) / 2) !important;
+        max-width: calc((100% - 1.5rem) / 2) !important;
+        flex: 0 0 calc((100% - 1.5rem) / 2) !important;
+    }
+}
+
+/* For lg to 1360px: Make cards take ~33.33% width (3 per row) */
+/* Gap is 2rem (32px) at lg, so 2 gaps = 64px between 3 cards */
+@media (min-width: 1024px) and (max-width: 1359px) {
+    .cardsContainer :global(article) {
+        width: calc((100% - 4rem) / 3) !important;
+        max-width: calc((100% - 4rem) / 3) !important;
+        flex: 0 0 calc((100% - 4rem) / 3) !important;
+    }
+}
+
+/* After 1360px: Keep original fixed width styling */
+@media (min-width: 1360px) {
+    .cardsContainer :global(article) {
+        width: 390px !important;
+        max-width: 390px !important;
+        flex: 0 0 390px !important;
+    }
+}
+
+/* Section7 Awards Container - Responsive cards */
+.awardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* For md to lg: Make cards take 50% width (2 per row) */
+/* Gap is 1rem (16px) at gap-4, so 1 gap = 16px between 2 cards */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .awardsContainer> :global(div) {
+        width: calc((100% - 1rem) / 2) !important;
+        max-width: calc((100% - 1rem) / 2) !important;
+        flex: 0 0 calc((100% - 1rem) / 2) !important;
+    }
+}
+
+/* For lg to 1355px: Make cards take ~33.33% width (3 per row) */
+/* Gap is 1rem (16px) at gap-4, so 2 gaps = 32px between 3 cards */
+@media (min-width: 1024px) and (max-width: 1354px) {
+    .awardsContainer> :global(div) {
+        width: calc((100% - 2rem) / 3) !important;
+        max-width: calc((100% - 2rem) / 3) !important;
+        flex: 0 0 calc((100% - 2rem) / 3) !important;
+    }
+}
+
+/* After 1355px: Keep original fixed width styling */
+@media (min-width: 1355px) {
+    .awardsContainer> :global(div:first-child) {
+        width: 406px !important;
+        max-width: 406px !important;
+        flex: 0 0 406px !important;
+    }
+
+    .awardsContainer> :global(div:not(:first-child)) {
+        width: 407px !important;
+        max-width: 407px !important;
+        flex: 0 0 407px !important;
+    }
+}
+
+/* Section5 Cards - 3 per row from lg to 1349px, reduced card size; after 1350 keep original */
+@media (min-width: 1024px) and (max-width: 1349px) {
+    .s5CardsGrid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .s5CardsGrid .s5Card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 260px !important;
+    }
+
+    .s5CardsGrid .s5Card>div:first-child {
+        height: 90px !important;
+        min-height: 90px !important;
+    }
+
+    .s5CardsGrid .s5Card h5 {
+        font-size: 13px !important;
+    }
+
+    .s5CardsGrid .s5Card>div:last-child>div:first-child p {
+        font-size: 11px !important;
+    }
+
+    .s5CardsGrid .s5Card h2 {
+        font-size: 15px !important;
+    }
+
+    .s5CardsGrid .s5Card h2 span {
+        font-size: 12px !important;
+    }
+
+    .s5CardsGrid .s5Card>div:last-child>div:last-child>p {
+        font-size: 11px !important;
+    }
+}

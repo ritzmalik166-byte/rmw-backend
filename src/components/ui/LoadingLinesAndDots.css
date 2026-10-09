@@ -1,0 +1,140 @@
+/* LoadingLinesAndDots - lines and dots animation */
+.loadingLinesAndDots {
+  --anim-dur: 2s;
+  --dot-size: 0.4em;
+  --line-length: 3em;
+  --line-width: 0.1em;
+  position: relative;
+  width: 12em;
+  height: 12em;
+}
+
+.loadingLinesAndDots__sector {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.loadingLinesAndDots__dot,
+.loadingLinesAndDots__dot::before,
+.loadingLinesAndDots__line {
+  position: absolute;
+  animation-duration: var(--anim-dur);
+  animation-delay: inherit;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.loadingLinesAndDots__dot::before,
+.loadingLinesAndDots__line {
+  background-color: currentColor;
+}
+
+.loadingLinesAndDots__dot {
+  animation-name: loading-dot-move-in-out;
+  top: calc(var(--line-length) / -2 + var(--dot-size) / -2);
+  left: calc(var(--dot-size) / -2);
+  width: var(--dot-size);
+  height: var(--dot-size);
+  z-index: 1;
+}
+
+.loadingLinesAndDots__dot::before {
+  animation-name: loading-dot-scale-in-out;
+  animation-timing-function: linear;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.loadingLinesAndDots__dot + .loadingLinesAndDots__dot {
+  animation-name: loading-dot-move-out-in;
+  top: calc(var(--line-length) / 2 + var(--dot-size) / -2);
+}
+
+.loadingLinesAndDots__dot + .loadingLinesAndDots__dot::before {
+  animation-name: loading-dot-scale-out-in;
+}
+
+.loadingLinesAndDots__line {
+  animation-name: loading-line-shade, loading-line-spin;
+  opacity: 0.5;
+  top: calc(var(--line-length) / -2);
+  left: calc(var(--line-width) / -2);
+  width: var(--line-width);
+  height: var(--line-length);
+}
+
+@keyframes loading-dot-move-in-out {
+  from {
+    animation-timing-function: ease-in;
+    transform: translateY(0);
+  }
+  50% {
+    animation-timing-function: ease-out;
+    transform: translateY(1.5em);
+  }
+  to {
+    transform: translateY(3em);
+  }
+}
+
+@keyframes loading-dot-move-out-in {
+  from {
+    animation-timing-function: ease-in;
+    transform: translateY(0);
+  }
+  50% {
+    animation-timing-function: ease-out;
+    transform: translateY(-1.5em);
+  }
+  to {
+    transform: translateY(-3em);
+  }
+}
+
+@keyframes loading-dot-scale-in-out {
+  from,
+  to {
+    transform: scale(0.67);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loading-dot-scale-out-in {
+  from,
+  to {
+    transform: scale(0.67);
+  }
+  50% {
+    transform: scale(0.33);
+  }
+}
+
+@keyframes loading-line-shade {
+  from,
+  to {
+    animation-timing-function: ease-in;
+    transform: scaleY(1);
+  }
+  50% {
+    animation-timing-function: ease-out;
+    transform: scaleY(0);
+  }
+}
+
+@keyframes loading-line-spin {
+  from,
+  to {
+    animation-timing-function: ease-in;
+    opacity: 0.5;
+  }
+  50% {
+    animation-timing-function: step-start;
+    opacity: 0;
+  }
+}

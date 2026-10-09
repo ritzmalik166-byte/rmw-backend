@@ -1,0 +1,275 @@
+/**
+ * About Section2 — linear scale between 1024px and 1365px only.
+ * Reference dimensions match the layout at 1366px; ≥1366px uses default Tailwind.
+ */
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .root {
+    --s2: clamp(0, calc((100vw - 1024px) / 342px), 1);
+    padding-top: calc(52.525622px + 17.474378px * var(--s2)) !important;
+    padding-bottom: calc(52.525622px + 17.474378px * var(--s2)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(37.518302px + 12.481698px * var(--s2)) !important;
+    padding-right: calc(37.518302px + 12.481698px * var(--s2)) !important;
+  }
+
+  .root .leftPane {
+    padding-top: calc(30.014663px + 9.985337px * var(--s2)) !important;
+    gap: calc(18.008798px + 5.991202px * var(--s2)) !important;
+  }
+
+  .root .whoRow {
+    padding-top: calc(9.004399px + 2.995601px * var(--s2)) !important;
+  }
+
+  .root .whoLabel {
+    font-size: calc(10.504831px + 3.495169px * var(--s2)) !important;
+  }
+
+  .root .statNum {
+    font-size: calc(45.020498px + 14.979502px * var(--s2)) !important;
+  }
+
+  .root .statPlus {
+    font-size: calc(22.510249px + 7.489751px * var(--s2)) !important;
+    top: calc(2.2511px + 0.7489px * var(--s2)) !important;
+    right: calc(-11.258124px - 3.741876px * var(--s2)) !important;
+  }
+
+  .root .statAwards {
+    font-size: calc(15.006833px + 4.993167px * var(--s2)) !important;
+  }
+
+  .root .statTagline {
+    font-size: calc(12.005466px + 3.994534px * var(--s2)) !important;
+  }
+
+  .root .leftCol {
+    gap: calc(12.005865px + 3.994135px * var(--s2)) !important;
+  }
+
+  .root .img17 {
+    width: calc(240.109283px + 79.890717px * var(--s2)) !important;
+    max-width: calc(240.109283px + 79.890717px * var(--s2)) !important;
+    height: auto !important;
+  }
+
+  .root .reviewsRow {
+    gap: calc(12.005865px + 3.994135px * var(--s2)) !important;
+    margin-bottom: calc(18.008798px + 5.991202px * var(--s2)) !important;
+  }
+
+  .root .avatarRow {
+    gap: calc(6.002933px + 1.997067px * var(--s2)) !important;
+  }
+
+  .root .avatarPad {
+    padding-top: calc(3.001466px + 0.998534px * var(--s2)) !important;
+    padding-bottom: calc(3.001466px + 0.998534px * var(--s2)) !important;
+  }
+
+  .root .avatar {
+    width: calc(35.266063px + 11.733937px * var(--s2)) !important;
+    height: calc(35.266063px + 11.733937px * var(--s2)) !important;
+  }
+
+  .root .avatarOverlap {
+    margin-left: calc(-7.503416px - 2.496584px * var(--s2)) !important;
+  }
+
+  .root .reviewsLabel {
+    font-size: calc(12.005466px + 3.994534px * var(--s2)) !important;
+  }
+
+  .root .starIcon {
+    width: calc(30.764011px + 10.235989px * var(--s2)) !important;
+    height: calc(30.764011px + 10.235989px * var(--s2)) !important;
+  }
+
+  .root .starScore {
+    font-size: calc(9.75477px + 3.24523px * var(--s2)) !important;
+  }
+
+  .root .gBadge {
+    width: calc(30.014663px + 9.985337px * var(--s2)) !important;
+    height: calc(30.014663px + 9.985337px * var(--s2)) !important;
+  }
+
+  .root .gBadge svg {
+    width: calc(16.508057px + 5.491943px * var(--s2)) !important;
+    height: calc(15.007331px + 4.992669px * var(--s2)) !important;
+  }
+
+  .root .awardWrap {
+    width: calc(291.142021px + 96.857979px * var(--s2)) !important;
+    max-width: calc(291.142021px + 96.857979px * var(--s2)) !important;
+  }
+
+  .root .rightPane {
+    padding-top: calc(30.014663px + 9.985337px * var(--s2)) !important;
+    padding-left: calc(48.023461px + 15.976539px * var(--s2)) !important;
+    max-width: calc(453.221082px + 150.778918px * var(--s2)) !important;
+  }
+
+  .root .rightLead {
+    font-size: calc(18.008798px + 5.991202px * var(--s2)) !important;
+  }
+
+  .root .rightBody {
+    font-size: calc(12.005466px + 3.994534px * var(--s2)) !important;
+  }
+
+  .root .teamWrap {
+    max-width: calc(423.206442px + 140.793558px * var(--s2)) !important;
+  }
+}
+
+/**
+ * Tablet only (768px–1023px): proportional scale vs 1366 reference.
+ * Same flex directions, order, alignment, and hierarchy as desktop — no stacking or restructuring.
+ * Does not apply below 768px or at ≥1024px.
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    --s2md: calc(100vw / 1366px);
+    padding-top: calc(70px * var(--s2md)) !important;
+    padding-bottom: calc(70px * var(--s2md)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(50px * var(--s2md)) !important;
+    padding-right: calc(50px * var(--s2md)) !important;
+  }
+
+  .root .container > div {
+    min-width: 0;
+  }
+
+  .root .leftPane {
+    padding-top: calc(40px * var(--s2md)) !important;
+    gap: calc(24px * var(--s2md)) !important;
+    min-width: 0;
+  }
+
+  .root .leftCol {
+    gap: calc(16px * var(--s2md)) !important;
+    min-width: 0;
+  }
+
+  .root .whoRow {
+    padding-top: calc(12px * var(--s2md)) !important;
+  }
+
+  .root .whoLabel {
+    font-size: calc(14px * var(--s2md)) !important;
+  }
+
+  .root .statNum {
+    font-size: calc(60px * var(--s2md)) !important;
+  }
+
+  .root .statPlus {
+    font-size: calc(30px * var(--s2md)) !important;
+    top: calc(3px * var(--s2md)) !important;
+    right: calc(-15px * var(--s2md)) !important;
+  }
+
+  .root .statAwards {
+    font-size: calc(20px * var(--s2md)) !important;
+  }
+
+  .root .statTagline {
+    font-size: calc(16px * var(--s2md)) !important;
+  }
+
+  .root .img17 {
+    width: calc(320px * var(--s2md)) !important;
+    max-width: calc(320px * var(--s2md)) !important;
+    height: auto !important;
+  }
+
+  .root .reviewsRow {
+    gap: calc(16px * var(--s2md)) !important;
+    margin-bottom: calc(24px * var(--s2md)) !important;
+    min-width: 0;
+  }
+
+  .root .avatarRow {
+    gap: calc(8px * var(--s2md)) !important;
+  }
+
+  .root .avatarPad {
+    padding-top: calc(4px * var(--s2md)) !important;
+    padding-bottom: calc(4px * var(--s2md)) !important;
+  }
+
+  .root .avatar {
+    width: calc(47px * var(--s2md)) !important;
+    height: calc(47px * var(--s2md)) !important;
+  }
+
+  .root .avatarOverlap {
+    margin-left: calc(-10px * var(--s2md)) !important;
+  }
+
+  .root .reviewsLabel {
+    font-size: calc(16px * var(--s2md)) !important;
+  }
+
+  .root .starIcon {
+    width: calc(41px * var(--s2md)) !important;
+    height: calc(41px * var(--s2md)) !important;
+  }
+
+  .root .starScore {
+    font-size: calc(13px * var(--s2md)) !important;
+  }
+
+  .root .gBadge {
+    width: calc(40px * var(--s2md)) !important;
+    height: calc(40px * var(--s2md)) !important;
+  }
+
+  .root .gBadge svg {
+    width: calc(22px * var(--s2md)) !important;
+    height: calc(20px * var(--s2md)) !important;
+  }
+
+  .root .awardWrap {
+    width: calc(388px * var(--s2md)) !important;
+    max-width: calc(388px * var(--s2md)) !important;
+  }
+
+  .root .rightPane {
+    padding-top: calc(40px * var(--s2md)) !important;
+    padding-left: calc(64px * var(--s2md)) !important;
+    max-width: calc(604px * var(--s2md)) !important;
+    min-width: 0;
+  }
+
+  .root .rightLead {
+    font-size: calc(24px * var(--s2md)) !important;
+    line-height: 1.35;
+  }
+
+  .root .rightBody {
+    font-size: calc(16px * var(--s2md)) !important;
+    line-height: 1.6;
+  }
+
+  .root .teamWrap {
+    max-width: calc(564px * var(--s2md)) !important;
+  }
+}
+
+.root .rightBody {
+  margin-top: 20px;
+}
+
+@media (min-width: 1024px) {
+  .root .rightBody {
+    margin-top: 28px;
+  }
+}

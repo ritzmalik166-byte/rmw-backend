@@ -1,0 +1,693 @@
+/* Header.module.css - Production Optimized */
+
+/* Sidebar Overlay */
+
+.mobileMenuOverlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease-in-out;
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.mobileMenuOverlay.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Sidebar Menu */
+.mobileMenu {
+  width: 300px;
+  height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 2rem;
+  background: linear-gradient(
+    -50deg,
+    rgba(255, 255, 255, 0.6) 60%,
+    rgb(0 0 0 / 63%) 100%
+  );
+  backdrop-filter: blur(10px); /* Glass effect */
+  padding: 20px;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4); /* Softer shadow */
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.mobileMenuOverlay.open .mobileMenu {
+  transform: translateX(0);
+}
+
+/* Close Button */
+.closeMenu {
+  background: none;
+  border: none;
+  color: #8a5a0d;
+  font-size: 24px;
+  cursor: pointer;
+  align-self: center;
+}
+
+/* Logo */
+.sidebarLogo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.sidebarLogo img {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebarLogo h2 {
+  color: #fddf82;
+  font-size: 18px;
+}
+
+/* Navigation Links */
+.sidebarNav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebarNav li {
+  margin: 15px 0;
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sidebarNav li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Arrow Icon */
+.sidebarNav li::after {
+  content: ">";
+  color: #fddf82;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Contact Section */
+.contactInfo {
+  margin-top: 20px;
+  padding: 10px;
+  color: white;
+}
+
+.contactInfo h3 {
+  color: #fddf82;
+  margin-bottom: 10px;
+}
+
+.contactInfo p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.contactInfo a {
+  color: #fddf82;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contactInfo a:hover {
+  color: white;
+}
+
+/* Social Icons */
+.socialIcons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.socialIcons a {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.socialIcons a:hover {
+  background: #fddf82;
+}
+
+.socialIcons img {
+  width: 16px;
+  height: 16px;
+}
+
+.menuMainMenu {
+  list-style: none;
+}
+
+.navItem {
+  color: #020202;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  font-size: 16px;
+  line-height: 35px;
+  margin: 20px 0px;
+}
+.headerBackground {
+  border-bottom: 1px solid black !important;
+}
+/* .headerBackground {
+  transition: all 0.3s ease-in-out; */
+/* z-index: 9999; */
+/* background: linear-gradient(90deg, #ff8000 0%, #f9e5d1 50%, #138808 100%);
+  background-size: 200% 100%;
+  animation: smoothFlagMove 10s linear infinite;
+    border-bottom: 1px solid black !important; */
+/* } */
+
+/* @keyframes smoothFlagMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+} */
+
+@media (min-width: 992px) {
+  /* Desktop Sidebar */
+  .headerBackground {
+    padding: 0 50px;
+  }
+  .desktopSidebar {
+    width: 400px;
+    height: 100vh;
+    background: white;
+    backdrop-filter: blur(10px); /* Glass effect */
+    padding: 20px;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    right: -400px; /* Start offscreen */
+    transform: translateX(0);
+    transition: right 0.4s ease-in-out; /* Smooth slide-in */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 2px solid black;
+    z-index: 1000;
+  }
+
+  .desktopSidebar.open {
+    right: 0; /* Move sidebar into view */
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1px);
+    transition: opacity 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  /* Close Button */
+  .closeMenu {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* Logo */
+  .MobileSidebarLogo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    margin-bottom: 30px;
+  }
+
+
+
+  /* Navigation */
+  .navItem {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #fff;
+  }
+
+  .navItem li {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .navItem li:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Contact Info */
+  .contactInfo {
+    margin-top: 20px;
+    padding: 10px;
+    color: #000;
+  }
+
+  .contactInfo h3 {
+    color: #000;
+    margin-bottom: 10px;
+  }
+
+  .contactInfo p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .contactInfo a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .contactInfo a:hover {
+    color: white;
+  }
+
+  /* Dropdown Menu */
+  .dropdown {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .dropdownMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #f2f2f2eb;
+    list-style: none;
+    padding: 10px 0;
+    min-width: 150px;
+    display: block;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  .dropdownMenu li {
+    padding: 10px 15px;
+    white-space: nowrap;
+    transition: background 0.3s;
+  }
+
+  .dropdownMenu li:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .navItem {
+    list-style: none;
+    padding: 0;
+  }
+
+  .navItem li {
+    padding: 12px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navItem li span {
+    flex-grow: 1;
+  }
+
+  .dropdownArrow {
+    background: none;
+    border: none;
+    color: #8a5a0d;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .submenu li {
+    padding: 10px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .submenu li:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Dropdown Parent */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Dropdown Toggle */
+.dropdownToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Dropdown Menu (Hidden Initially) */
+.submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.1);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+.submenu.show {
+  max-height: 400px; /* Adjust if needed */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdownArrow {
+  background: none;
+  border: none;
+  color: #8a5a0d;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+  z-index: 999; /* Ensures it's behind the sidebar but above content */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.subDropLink:hover {
+  color: #fddf82;
+}
+
+/* Dropdown hover styles */
+.position-relative:hover .dropdown-menu {
+  display: block !important;
+}
+
+.position-relative .dropdown-menu:hover {
+  display: block !important;
+}
+
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.show {
+  max-height: 1000px; /* Large enough to show all items */
+}
+
+.case_imgs img {
+  height: 100px;
+  object-fit: cover;
+}
+
+.mobileSidebarLogo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  /* top: 20px; */
+}
+
+/* Wrapper around Image to allow `fill` */
+.logoImageWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.logoImage {
+  object-fit: contain;
+}
+
+/* Close Button Style (unchanged from original) */
+.closeMenu {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.caseImgs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Keeps height proportional to width */
+  overflow: hidden;
+}
+
+.caseImage {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.caseImage:hover {
+  transform: scale(1.03);
+}
+
+.visuallyhidden {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+.lgImg {
+  opacity: 1 !important;
+  max-width: 100%;
+}
+
+.spinAnime {
+  animation: spinDiwali 10s linear infinite;
+}
+@keyframes spinDiwali {
+  0% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: 180deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+/* Responsive positioning for Diwali images only - keeping exact dimensions */
+/* Only adjusting position, not height/width */
+
+@media (max-width: 1199px) {
+  /* First Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 80px !important;
+  }
+
+  /* Second Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    right: 50px !important;
+    top: -30px !important;
+  }
+
+  /* Third Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    left: -10px !important;
+    top: 0 !important;
+  }
+
+  /* Fourth Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    left: 100px !important;
+    top: 10px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  /* First Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 60px !important;
+  }
+
+  /* Second Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    right: 20px !important;
+    top: -20px !important;
+  }
+
+  /* Third Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    left: -5px !important;
+    top: 5px !important;
+  }
+
+  /* Fourth Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    left: 60px !important;
+    top: 15px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* First Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 40px !important;
+  }
+
+  /* Second Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    right: 10px !important;
+    top: -10px !important;
+  }
+
+  /* Third Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    left: 0 !important;
+    top: 10px !important;
+  }
+
+  /* Fourth Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    left: 30px !important;
+    top: 20px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  /* First Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 30px !important;
+  }
+
+  /* Second Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    right: 5px !important;
+    top: -5px !important;
+  }
+
+  /* Third Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    left: 5px !important;
+    top: 15px !important;
+  }
+
+  /* Fourth Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    left: 20px !important;
+    top: 25px !important;
+  }
+}
+
+/* Landscape orientation adjustments for mobile - position only */
+@media (max-width: 991px) and (orientation: landscape) {
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 20px !important;
+  }
+
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    top: -5px !important;
+  }
+
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    top: 5px !important;
+  }
+
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    top: 10px !important;
+  }
+}
+/* Responsive positioning following your exact breakpoints */
+@media (min-width: 994px) and (max-width: 1354px) {
+  .resNav {
+    left: 0;
+    top: 165px !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 994px) {
+  .resNav {
+    left: 0;
+    top: 135px !important;
+  }
+}
+
+/* Additional breakpoints for complete responsiveness */
+@media (min-width: 1355px) {
+  .resNav {
+    left: 0;
+    top: 100px !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .resNav {
+    left: 0;
+    top: 100px !important;
+  }
+}
+

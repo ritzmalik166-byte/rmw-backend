@@ -1,0 +1,48 @@
+/* Soft scrollbar for sidebar nav (still scrollable) */
+.sidenav-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.28) transparent;
+}
+
+.sidenav-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidenav-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidenav-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.28);
+  border-radius: 999px;
+}
+
+.sidenav-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}
+
+/* Prefer fully hidden scrollbar when space is tight; keep scroll working */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Submenu height animation */
+.sidenav-submenu {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms ease;
+}
+
+.sidenav-submenu[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.sidenav-submenu-inner {
+  overflow: hidden;
+  min-height: 0;
+}

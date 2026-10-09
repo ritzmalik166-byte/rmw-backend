@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@source "../**/*.{js,jsx,ts,tsx}";
+@source "../../../components/**/*.{js,jsx,ts,tsx}";
+@source "../../../allPages/**/*.{js,jsx,ts,tsx}";
+@source "../../career/**/*.{js,jsx,ts,tsx}";
+@source "../../career2/**/*.{js,jsx,ts,tsx}";
+
+

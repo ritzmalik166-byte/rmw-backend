@@ -1,0 +1,742 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+@layer utilities {
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+}
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 44%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --chart-1: 221.2 83.2% 53.3%;
+    --chart-2: 212 95% 68%;
+    --chart-3: 216 92% 60%;
+    --chart-4: 210 98% 78%;
+    --chart-5: 212 97% 87%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 221.2 83.2% 53.3%;
+    --chart-1: 221.2 83.2% 53.3%;
+    --chart-2: 212 95% 68%;
+    --chart-3: 216 92% 60%;
+    --chart-4: 210 98% 78%;
+    --chart-5: 212 97% 87%;
+  }
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+}
+
+/* ---------------------------- DASHBOARD ---------------------------------- */
+.dashboard-container {
+  padding: 40px 20px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 42px;
+  color: #1f1f1f;
+  font-weight: 700;
+  margin: 0;
+}
+
+.breadcrumb-placeholder {
+  margin-bottom: 30px;
+}
+
+.dashboard-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 960px;
+}
+
+@media (min-width: 768px) {
+  .dashboard-stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dashboard-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 35px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dashboard-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.visitors-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 35px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.visitors-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.visitors-icon {
+  margin-bottom: 15px;
+}
+
+.visitors-info {
+  text-align: center;
+}
+
+.visitors-label {
+  font-size: 15px;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.visitors-count {
+  font-size: 40px;
+  color: #1f1f1f;
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+.user-session-meta {
+  font-size: 14px;
+  color: #495057;
+  margin: 8px 0 0;
+  text-align: center;
+  word-break: break-word;
+  line-height: 1.45;
+}
+
+.user-session-role-badge {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #394a59;
+  background: rgba(57, 74, 89, 0.12);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* Footer */
+.admin-footer {
+  margin-top: 60px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+/* =================================================================
+   ADMIN V2 — GLOBAL INNER PAGE OVERRIDES
+   Scoped under .admin-v2 (applied to <main> in layout-client.tsx)
+   ================================================================= */
+
+/* ---- Table overrides ---- */
+.admin-v2 table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13.5px;
+  overflow: hidden;
+}
+
+.admin-v2 table thead tr {
+  background: linear-gradient(135deg, #0b1623 0%, #1e2d3d 100%) !important;
+  color: #ffffff !important;
+}
+
+.admin-v2 table thead th {
+  padding: 14px 18px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #ffffff !important;
+  border: none !important;
+  white-space: nowrap;
+}
+
+.admin-v2 table thead th:first-child {
+  border-radius: 12px 0 0 0;
+}
+.admin-v2 table thead th:last-child {
+  border-radius: 0 12px 0 0;
+}
+
+.admin-v2 table tbody tr {
+  border-bottom: 1px solid #edf2f7;
+  transition: background 0.12s ease;
+}
+
+.admin-v2 table tbody tr:hover {
+  background: #f8fafc !important;
+}
+
+.admin-v2 table tbody td {
+  padding: 16px 18px !important;
+  color: #1f2937;
+  vertical-align: middle;
+  border-bottom: 1px solid #edf2f7 !important;
+  line-height: 1.45;
+}
+
+.admin-v2 table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Blog listing tables need larger thumbnails and cleaner action controls. */
+.admin-v2 table td:first-child {
+  width: 145px;
+}
+
+.admin-v2 table td:first-child img {
+  width: 112px !important;
+  height: 70px !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+}
+
+.admin-v2 table td:nth-child(2) {
+  min-width: 280px;
+  max-width: 520px;
+  font-weight: 600;
+  color: #0b1623;
+}
+
+.admin-v2 table td:nth-child(3) {
+  width: 120px;
+  color: #475569;
+  font-size: 12px;
+}
+
+.admin-v2 table td:nth-child(4),
+.admin-v2 table td:nth-child(5) {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.admin-v2 .admin-blog-table-card {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.admin-v2 .admin-blog-table {
+  background: #ffffff;
+}
+
+.admin-v2 .admin-blog-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ---- Old "Manage Page" gray header bars ---- */
+/* Targets the .bg-[#9CA9B4] class used as section headers */
+.admin-v2 [class*="bg-\\[\\#9CA9B4\\]"],
+.admin-v2 .bg-\[\#9CA9B4\] {
+  background: linear-gradient(135deg, #0b1623, #1e2d3d) !important;
+  color: #ffffff !important;
+}
+
+/* ---- Old green accent buttons (ManageBlog style) ---- */
+.admin-v2 a[class*="bg-\\[\\#688A7E\\]"],
+.admin-v2 [class*="bg-\\[\\#688A7E\\]"] {
+  background: linear-gradient(135deg, #c59d4f, #9a7530) !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(197, 157, 79, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.admin-v2 [class*="hover\\:bg-\\[\\#365248\\]"]:hover,
+.admin-v2 [class*="hover\\:bg-\\[\\#436b5d\\]"]:hover {
+  background: linear-gradient(135deg, #9a7530, #7a5c20) !important;
+}
+
+/* ---- Old breadcrumb inside inner pages ---- */
+.admin-v2 .flex.flex-wrap.items-center.gap-2.bg-white.p-3.rounded-md.shadow-sm,
+.admin-v2 .flex.flex-wrap.items-center.gap-4.bg-white.p-3.rounded-md.shadow-sm {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 0 8px 0 !important;
+}
+
+/* ---- White card containers ---- */
+.admin-v2 .bg-white.rounded-md.shadow-md,
+.admin-v2 .bg-white.rounded-lg.shadow-md {
+  border-radius: 14px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ---- Form inputs and selects in inner pages ---- */
+.admin-v2 input[type="text"],
+.admin-v2 input[type="email"],
+.admin-v2 input[type="password"],
+.admin-v2 input[type="number"],
+.admin-v2 input[type="url"],
+.admin-v2 select,
+.admin-v2 textarea {
+  border-radius: 10px !important;
+  border-color: #e2e8f0 !important;
+  background: #f8fafc !important;
+  font-size: 14px !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.admin-v2 input:focus,
+.admin-v2 select:focus,
+.admin-v2 textarea:focus {
+  border-color: #c59d4f !important;
+  box-shadow: 0 0 0 3px rgba(197, 157, 79, 0.1) !important;
+  outline: none !important;
+}
+
+/* ---- Status badges ---- */
+.admin-v2 span.bg-green-500 {
+  background: #10b981 !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  padding: 3px 10px !important;
+}
+
+.admin-v2 span.bg-red-500 {
+  background: #ef4444 !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  padding: 3px 10px !important;
+}
+
+/* ---- Pagination buttons ---- */
+.admin-v2 button[class*="border-\\[\\#688A7E\\]"],
+.admin-v2 button[class*="border-\\[\\#365248\\]"] {
+  border-color: #c59d4f !important;
+  color: #9a7530 !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  transition: all 0.15s ease !important;
+}
+
+.admin-v2 button[class*="border-\\[\\#688A7E\\]"]:hover,
+.admin-v2 button[class*="border-\\[\\#365248\\]"]:hover {
+  background: #c59d4f !important;
+  color: #ffffff !important;
+}
+
+/* ---- Page main heading styles ---- */
+.admin-v2 .admin-page-heading {
+  color: #0b1623 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Respect explicit white text on dark backgrounds. */
+.admin-v2 .text-white,
+.admin-v2 .text-white * {
+  color: #ffffff !important;
+}
+
+/* ---- Icon action buttons in tables (view/edit/delete) ---- */
+.admin-v2 table td:last-child {
+  min-width: 100px;
+}
+
+.admin-v2 table td:last-child a,
+.admin-v2 table td:last-child button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+  margin: 0 2px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e5e7eb !important;
+  transition: all 0.15s ease !important;
+}
+
+.admin-v2 table td:last-child a:hover,
+.admin-v2 table td:last-child button:hover {
+  background: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08) !important;
+}
+
+.admin-v2 table .text-blue-600 {
+  color: #3b82f6 !important;
+}
+.admin-v2 table .text-green-600 {
+  color: #10b981 !important;
+}
+.admin-v2 table .text-red-600 {
+  color: #ef4444 !important;
+}
+
+/* ---- Loading spinner override ---- */
+.admin-v2 .animate-spin {
+  color: #c59d4f;
+}
+
+/* ---- Delete/confirm modal improvements ---- */
+.admin-v2 .fixed.inset-0.flex.items-center.justify-center > div {
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 32px 80px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ---- Inner page top section (title + action button row) ---- */
+.admin-v2 > div:first-child > div:first-child,
+.admin-v2-page-top {
+  margin-bottom: 20px;
+}
+
+/* ---- Scrollbar for inner content ---- */
+.admin-v2 ::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.admin-v2 ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-v2 ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 99px;
+}
+.admin-v2 ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =================================================================
+   ADMIN V2 — LEGACY TOKEN UPLIFT (applies to all internal pages)
+   These pages use hardcoded brand colors; remap them to the V2 system
+   ================================================================= */
+
+/* Old full-page gray wrappers -> transparent (main already provides bg+padding) */
+.admin-v2 .bg-\[\#EEEEEE\],
+.admin-v2 .bg-\[\#eeeeee\],
+.admin-v2 .bg-\[\#f0f2f5\],
+.admin-v2 .bg-\[\#F0F2F5\] {
+  background: transparent !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Legacy light uppercase page titles -> bold dark headings */
+.admin-v2 h1.text-\[\#ACACAC\],
+.admin-v2 .text-\[\#ACACAC\] {
+  color: #0b1623 !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  font-size: 1.25rem !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Legacy flex "table" header rows */
+.admin-v2 .bg-\[\#CCCCCC\],
+.admin-v2 .bg-\[\#cccccc\] {
+  background: linear-gradient(135deg, #0b1623, #1e2d3d) !important;
+  color: #ffffff !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.admin-v2 .bg-\[\#CCCCCC\] p,
+.admin-v2 .bg-\[\#cccccc\] p {
+  color: #ffffff !important;
+  letter-spacing: 0.06em;
+}
+
+/* Legacy body text / labels in green slate -> readable slate */
+.admin-v2 .text-\[\#688A7E\] {
+  color: #334155 !important;
+}
+
+.admin-v2 .text-\[\#365248\] {
+  color: #0b1623 !important;
+}
+
+.admin-v2 .text-\[\#717272\] {
+  color: #64748b !important;
+}
+
+.admin-v2 .text-\[\#2955B3\] {
+  color: #c59d4f !important;
+}
+
+.admin-v2 .text-\[\#838383\] {
+  color: #0b1623 !important;
+  font-weight: 600;
+}
+
+/* Legacy input/select borders */
+.admin-v2 .border-\[\#1a6249\],
+.admin-v2 .border-\[\#365248\] {
+  border-color: #e2e8f0 !important;
+  border-radius: 12px !important;
+  background: #f8fafc !important;
+}
+
+/* Pagination active state (legacy dark green) */
+.admin-v2 .bg-\[\#365248\] {
+  background: linear-gradient(135deg, #0b1623, #1e2d3d) !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+}
+
+/* Legacy delete / red action links */
+.admin-v2 .text-red-600.hover\:underline:hover {
+  text-decoration: none !important;
+}
+
+/* Soften the legacy breadcrumb white card (already partially handled) */
+.admin-v2 .bg-white.p-3.rounded-md.shadow-sm {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 0 4px 0 !important;
+}
+
+/* Footer credit lines */
+.admin-v2 .admin-footer,
+.admin-v2 footer {
+  color: #94a3b8 !important;
+}
+
+/* Jodit editor — sticky formatting toolbar while composing blogs */
+.admin-v2 .editor-container {
+  position: relative;
+  z-index: 1;
+}
+
+.admin-v2 .editor-container .jodit-container {
+  overflow: visible !important;
+}
+
+.admin-v2 .editor-container .jodit-toolbar__box {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-v2 .editor-container .jodit-container.jodit_sticky-on .jodit-toolbar__box {
+  top: var(--jodit-toolbar-offset, 72px) !important;
+  z-index: 45 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.admin-v2 .editor-container .jodit-workplace {
+  min-height: 320px;
+}

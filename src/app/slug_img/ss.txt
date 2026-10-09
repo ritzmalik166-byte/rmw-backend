@@ -1,0 +1,36 @@
+blogBanner
+: 
+"/images/1752051887399-cover.jpg"
+blogBody
+: 
+(2) [{…}, {…}]
+blogCategoryId
+: 
+"686e1b4a548b9238ae4cb4fd"
+blogDescription
+: 
+"<p>This is meta testing page 1</p>"
+blogSlug
+: 
+"this-is-testing-1-for-mongo"
+blogStatus
+: 
+null
+blogTitle
+: 
+"This is testing 1 for mongo"
+createdAt
+: 
+"2025-07-09T09:04:47.528Z"
+metaKeywords
+: 
+"This is testing 1 for mongo"
+updatedAt
+: 
+"2025-07-09T09:04:47.528Z"
+__v
+: 
+0
+_id
+: 
+"686e30afd78e6050fed77ded"

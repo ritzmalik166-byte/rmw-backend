@@ -1,0 +1,869 @@
+.carousel-3d-root {
+  --card-w: clamp(260px, 40vw, 360px);
+  --card-h: clamp(220px, 38vw, 320px);
+  --camera-tilt: 0deg;
+  --motion-blur: 0px;
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  overflow: hidden;
+  background: #06070d;
+  touch-action: pan-y;
+  user-select: none;
+  padding-top: clamp(5rem, 11vh, 7rem);
+}
+
+/* Animated dark ambient background */
+.carousel-3d-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.carousel-3d-bg-mesh {
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(
+    125deg,
+    #0a0c18 0%,
+    #12152a 22%,
+    #1a1035 42%,
+    #0d1830 58%,
+    #151828 78%,
+    #080a12 100%
+  );
+  background-size: 240% 240%;
+  animation: carousel-3d-mesh-shift 22s ease-in-out infinite;
+}
+
+.carousel-3d-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.carousel-3d-bg-orb--1 {
+  width: min(55vw, 520px);
+  height: min(55vw, 520px);
+  left: -8%;
+  top: 8%;
+  background: radial-gradient(circle, rgba(88, 72, 180, 0.85) 0%, transparent 68%);
+  animation: carousel-3d-orb-1 20s ease-in-out infinite;
+}
+
+.carousel-3d-bg-orb--2 {
+  width: min(48vw, 440px);
+  height: min(48vw, 440px);
+  right: -6%;
+  top: 28%;
+  background: radial-gradient(circle, rgba(40, 100, 200, 0.75) 0%, transparent 70%);
+  animation: carousel-3d-orb-2 26s ease-in-out infinite;
+}
+
+.carousel-3d-bg-orb--3 {
+  width: min(62vw, 580px);
+  height: min(62vw, 580px);
+  left: 22%;
+  bottom: -18%;
+  background: radial-gradient(circle, rgba(180, 110, 60, 0.45) 0%, transparent 72%);
+  animation: carousel-3d-orb-3 24s ease-in-out infinite;
+}
+
+.carousel-3d-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 75% 65% at 50% 42%,
+    transparent 0%,
+    rgba(4, 5, 10, 0.35) 55%,
+    rgba(2, 3, 8, 0.92) 100%
+  );
+}
+
+.carousel-3d-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.carousel-3d-heading-wrap {
+  width: min(100%, 1180px);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(1.1rem, 3.6vh, 2.1rem) 1rem clamp(0.95rem, 2.8vh, 1.6rem);
+}
+
+.carousel-3d-heading {
+  position: relative;
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 2.35rem);
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  font-weight: 800;
+  color: #fffdf7;
+  -webkit-text-stroke: 0.9px rgba(8, 10, 18, 0.55);
+  text-shadow:
+    0 1px 0 rgba(8, 10, 18, 0.35),
+    0 8px 22px rgba(0, 0, 0, 0.28),
+    0 0 16px rgba(255, 245, 206, 0.2);
+}
+
+.carousel-3d-heading::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background-image: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 34%,
+    rgba(255, 226, 163, 0.25) 43%,
+    rgba(255, 215, 120, 0.95) 50%,
+    rgba(255, 240, 191, 0.4) 57%,
+    rgba(255, 255, 255, 0) 66%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: carousel-3d-gold-sparkle 3.8s linear infinite;
+  pointer-events: none;
+}
+
+.carousel-3d-heading-golden {
+  display: inline-block;
+  color: #f4d27a;
+  background: linear-gradient(
+    105deg,
+    #fff2c0 0%,
+    #f4d27a 24%,
+    #e8b24f 48%,
+    #ffd986 70%,
+    #fff0be 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 8px rgba(255, 211, 122, 0.34),
+    0 0 18px rgba(232, 178, 79, 0.26);
+}
+
+@keyframes carousel-3d-gold-sparkle {
+  0% {
+    background-position: 150% 50%;
+  }
+  100% {
+    background-position: -120% 50%;
+  }
+}
+
+@keyframes carousel-3d-mesh-shift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    background-position: 0% 50%;
+  }
+  33% {
+    transform: translate(2%, -1%) rotate(1deg);
+    background-position: 50% 0%;
+  }
+  66% {
+    transform: translate(-2%, 2%) rotate(-1deg);
+    background-position: 100% 80%;
+  }
+}
+
+@keyframes carousel-3d-orb-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(12%, 18%) scale(1.12);
+  }
+}
+
+@keyframes carousel-3d-orb-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-14%, 10%) scale(1.08);
+  }
+}
+
+@keyframes carousel-3d-orb-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(8%, -12%) scale(1.15);
+  }
+}
+
+.carousel-3d-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: min(58vh, 520px);
+  padding: 1.5rem 1rem clamp(2.5rem, 6vh, 4rem);
+}
+
+.carousel-3d-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.carousel-3d-arrow {
+  flex-shrink: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #fff;
+  color: #374151;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carousel-3d-arrow:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-3d-stage {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: 920px;
+  height: min(58vh, 480px);
+  margin: 0 auto;
+  perspective: 1200px;
+  perspective-origin: 50% 42%;
+  transform-style: preserve-3d;
+}
+
+.carousel-3d-stage::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  z-index: 0;
+  width: min(90%, 720px);
+  height: 55%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(120, 140, 220, 0.12) 0%,
+    transparent 72%
+  );
+  pointer-events: none;
+  animation: carousel-3d-spotlight 8s ease-in-out infinite;
+}
+
+.carousel-3d-stage::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: min(90%, 780px);
+  height: min(65%, 420px);
+  transform: translate(-50%, -50%) rotateX(75deg);
+  border-radius: 50%;
+  border: 1px solid rgba(162, 204, 255, 0.24);
+  box-shadow:
+    0 0 45px rgba(90, 144, 255, 0.16),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+@keyframes carousel-3d-spotlight {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -48%) scale(1.06);
+  }
+}
+
+.carousel-3d-track {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transform-style: preserve-3d;
+}
+
+.carousel-3d-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--card-w);
+  height: var(--card-h);
+  margin-left: calc(var(--card-w) / -2);
+  margin-top: calc(var(--card-h) / -2);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  contain: layout style paint;
+}
+
+.carousel-3d-card.is-sliding {
+  transition:
+    transform 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease;
+  will-change: transform, opacity;
+}
+
+.carousel-3d-card.is-dragging {
+  transition: none;
+}
+
+.carousel-3d-card-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.05)),
+    rgba(16, 20, 34, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(12px) saturate(1.3);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  box-shadow:
+    0 35px 60px rgba(0, 0, 0, 0.44),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 -32px 60px rgba(117, 181, 255, 0.12) inset;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.carousel-3d-card.is-center .carousel-3d-card-inner {
+  transform: translateZ(24px) scale(1.02);
+  box-shadow:
+    0 45px 80px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(255, 255, 255, 0.13) inset,
+    0 0 56px rgba(114, 174, 255, 0.35);
+  transition: box-shadow 0.58s cubic-bezier(0.22, 1, 0.36, 1), transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.carousel-3d-card-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-3d-card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0) 38%),
+    linear-gradient(to top, rgba(0, 4, 15, 0.38), transparent 45%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Cover card; bias crop toward upper center so faces stay in frame */
+.carousel-3d-card-img {
+  object-fit: cover !important;
+  object-position: center 32% !important;
+}
+
+.carousel-3d-grid-item .carousel-3d-card-img {
+  object-position: center 30% !important;
+}
+
+.carousel-3d-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.carousel-3d-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(179, 224, 255, 0.9);
+  box-shadow:
+    0 0 12px rgba(156, 205, 255, 0.7),
+    0 0 30px rgba(112, 170, 255, 0.48);
+  opacity: 0;
+  animation-name: carousel-3d-float-particle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes carousel-3d-float-particle {
+  0% {
+    transform: translate3d(0, 24px, 0) scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.82;
+  }
+  50% {
+    transform: translate3d(18px, -16px, 0) scale(1);
+    opacity: 0.95;
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate3d(-14px, -52px, 0) scale(0.65);
+    opacity: 0;
+  }
+}
+
+.carousel-3d-view-all-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: clamp(1.25rem, 3vh, 2rem);
+  padding: clamp(1.5rem, 4vh, 2.5rem) 1rem clamp(3rem, 7vh, 5rem);
+}
+
+.carousel-3d-view-all-btn {
+  border-radius: 9999px;
+  border: 1px solid rgba(212, 165, 116, 0.65);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.65rem 1.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.carousel-3d-view-all-btn:hover {
+  background: rgba(212, 165, 116, 0.18);
+  border-color: #d4a574;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* All photos modal — portaled above navbar (z-200) */
+.carousel-3d-all-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 5, 10, 0);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  padding: calc(5.5rem + env(safe-area-inset-top, 0px)) 1rem 1rem;
+  opacity: 0;
+}
+
+.carousel-3d-all-modal.is-open {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: carousel-3d-all-overlay-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.carousel-3d-all-modal.is-closing {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: carousel-3d-all-overlay-out 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+.carousel-3d-all-modal-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(96vw, 1100px);
+  max-height: calc(100vh - 6.5rem - env(safe-area-inset-top, 0px));
+  border-radius: 16px;
+  background: linear-gradient(165deg, #161922 0%, #0e1018 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transform: translateY(28px) scale(0.94);
+}
+
+.carousel-3d-all-modal.is-open .carousel-3d-all-modal-panel {
+  animation: carousel-3d-all-panel-in 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.04s;
+}
+
+.carousel-3d-all-modal.is-closing .carousel-3d-all-modal-panel {
+  animation: carousel-3d-all-panel-out 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes carousel-3d-all-overlay-in {
+  from {
+    opacity: 0;
+    background: rgba(4, 5, 10, 0);
+  }
+  to {
+    opacity: 1;
+    background: rgba(4, 5, 10, 0.92);
+  }
+}
+
+@keyframes carousel-3d-all-overlay-out {
+  from {
+    opacity: 1;
+    background: rgba(4, 5, 10, 0.92);
+  }
+  to {
+    opacity: 0;
+    background: rgba(4, 5, 10, 0);
+  }
+}
+
+@keyframes carousel-3d-all-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes carousel-3d-all-panel-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-3d-all-modal.is-open,
+  .carousel-3d-all-modal.is-closing,
+  .carousel-3d-all-modal.is-open .carousel-3d-all-modal-panel,
+  .carousel-3d-all-modal.is-closing .carousel-3d-all-modal-panel {
+    animation: none;
+  }
+
+  .carousel-3d-all-modal.is-open {
+    opacity: 1;
+    background: rgba(4, 5, 10, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .carousel-3d-all-modal.is-open .carousel-3d-all-modal-panel {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.carousel-3d-all-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.carousel-3d-all-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+
+.carousel-3d-all-modal-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.carousel-3d-all-modal-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.25rem 1.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel-3d-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.carousel-3d-grid-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: #1c1f2b;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.carousel-3d-grid-item:hover {
+  border-color: rgba(212, 165, 116, 0.35);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+
+/* Single photo lightbox (above all-photos modal) */
+.carousel-3d-modal--lightbox {
+  z-index: 210;
+}
+
+.carousel-3d-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.88);
+  padding: 1rem;
+}
+
+.carousel-3d-modal-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-3d-modal-toolbar--end {
+  justify-content: flex-end;
+}
+
+.carousel-3d-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+}
+
+.carousel-3d-modal-body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.carousel-3d-modal-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+}
+
+.carousel-3d-modal-nav:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.carousel-3d-modal-nav--left {
+  left: 0.25rem;
+}
+
+.carousel-3d-modal-nav--right {
+  right: 0.25rem;
+}
+
+.carousel-3d-modal-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: min(96vw, 1100px);
+  height: 100%;
+  max-height: calc(100vh - 5rem);
+  margin: 0 3rem;
+}
+
+.carousel-3d-modal-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.carousel-3d-loader-dot {
+  animation: carousel-3d-dot-bounce 1.05s ease-in-out infinite;
+}
+
+@keyframes carousel-3d-dot-bounce {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  40% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 640px) {
+  .carousel-3d-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-3d-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-3d-root {
+    --card-w: min(72vw, 280px);
+    --card-h: min(48vw, 210px);
+    padding-top: clamp(4.25rem, 14vw, 5.5rem);
+  }
+
+  .carousel-3d-wrap {
+    min-height: 48vh;
+    padding: 0.75rem 0.35rem clamp(2rem, 5vh, 3rem);
+  }
+
+  .carousel-3d-heading-wrap {
+    padding: 0.85rem 0.85rem 1rem;
+  }
+
+  .carousel-3d-heading {
+    letter-spacing: 0.01em;
+    -webkit-text-stroke: 0.75px rgba(8, 10, 18, 0.58);
+  }
+
+  .carousel-3d-inner {
+    gap: 0.35rem;
+    width: 100%;
+  }
+
+  .carousel-3d-arrow {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .carousel-3d-stage {
+    height: min(44vh, 340px);
+    max-width: 100%;
+  }
+
+  .carousel-3d-view-all-wrap {
+    margin-top: 1.5rem;
+    padding: 1.75rem 1rem 3.5rem;
+  }
+
+  .carousel-3d-view-all-btn {
+    font-size: 0.8rem;
+    padding: 0.55rem 1.1rem;
+  }
+
+  .carousel-3d-all-modal {
+    align-items: flex-start;
+    padding: calc(4.75rem + env(safe-area-inset-top, 0px)) 0.5rem 0.5rem;
+  }
+
+  .carousel-3d-all-modal-panel {
+    width: 100%;
+    max-height: calc(100vh - 5.25rem - env(safe-area-inset-top, 0px));
+    border-radius: 14px 14px 0 0;
+  }
+
+  .carousel-3d-all-modal-scroll {
+    padding: 0.75rem;
+  }
+
+  .carousel-3d-grid {
+    gap: 0.5rem;
+  }
+
+  .carousel-3d-modal {
+    padding: calc(4rem + env(safe-area-inset-top, 0px)) 0.5rem 0.5rem;
+  }
+
+  .carousel-3d-modal-image-wrap {
+    margin: 0 2rem;
+    max-height: calc(100vh - 5.5rem);
+  }
+
+  .carousel-3d-modal-nav {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .carousel-3d-root {
+    --card-w: 82vw;
+    --card-h: 52vw;
+  }
+
+  .carousel-3d-arrow {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+}

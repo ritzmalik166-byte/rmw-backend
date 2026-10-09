@@ -1,0 +1,33 @@
+.megaPhoneDiv {
+  height: 20rem;
+  width: 100%;
+  position: relative;
+}
+.topBrandLogoImgD {
+  /* height: 15rem; */
+  width: 80%;
+  position: relative;
+}
+
+.ourPRCard {
+  width: 100%;
+  height: 38rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+@media (max-width: 1024px) {
+  .ourPRCard {
+    height: 28rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ourPRCard {
+    height: 18rem;
+  }
+}
+.swImg {
+  object-fit: contain;
+}

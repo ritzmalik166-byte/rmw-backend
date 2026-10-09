@@ -1,0 +1,30 @@
+/* Banner Swiper container - used to scope pagination styles */
+.bannerSwiper {
+  position: relative;
+}
+
+/* Pagination container: 21px from bottom, 4px gap between dots */
+.bannerSwiper :global(.swiper-pagination) {
+  position: absolute !important;
+  bottom: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 20 !important;
+}
+
+/* Inactive pagination dots: 25px width, 10px height, white bg */
+.bannerSwiper :global(.swiper-pagination-bullet) {
+  width: 7px;
+  height: 7px;
+  margin: 0 2px;
+  background: #fff;
+  border-radius: 5px;
+  opacity: 1;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* Active pagination dot: 50px width, gold bg */
+.bannerSwiper :global(.swiper-pagination-bullet-active) {
+  width: 50px;
+  background: #c99237;
+}

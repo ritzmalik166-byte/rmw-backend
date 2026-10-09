@@ -1,0 +1,197 @@
+/* Flip Animation Styles */
+.flipCard {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flipCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flipCard:hover .flipCardInner {
+  transform: rotateY(180deg);
+}
+
+.flipCardFront,
+.flipCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.flipCardFront {
+  background: black;
+}
+
+.title3d {
+  background: #00000063;
+  color: #fff;
+  left: 0;
+  /* outline: 1px solid #0000; */
+  position: absolute;
+  bottom: 0;
+  transform: translateY(-50%) translateZ(60px) scale(0.94);
+  width: 100%;
+  z-index: 2;
+  padding: 0.2rem;
+
+  /* margin: 0; */
+  font-size: 1rem;
+  font-weight: 600;
+  /* text-align: center; */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.flipCardBack {
+  background: #0c2f3d;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 47, 61, 1) 0%,
+    rgba(22, 135, 26, 1) 100%,
+    rgba(194, 179, 47, 1) 65%
+  );
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.storyDescription {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-height: 60%;
+  overflow: auto;
+  color: white;
+}
+
+.viewButton {
+  background: white;
+  color: #764ba2;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.viewButton:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+/* Original Reel Styles (with adjustments) */
+.reelStoriesWrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 0 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.reelContainer {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0 1rem;
+  width: max-content;
+  margin: auto;
+}
+
+.reelCard {
+  position: relative;
+  width: 75vw;
+  height: calc(75vw * 1.777);
+  max-width: 300px;
+  max-height: calc(300px * 1.777);
+  min-width: 200px;
+  min-height: calc(200px * 1.777);
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+}
+
+.reelImageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.reelImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.noStories {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 640px) {
+  .reelCard {
+    width: 60vw;
+    height: calc(60vw * 1.777);
+  }
+}
+
+@media (min-width: 768px) {
+  .reelContainer {
+    gap: 1rem;
+    padding: 0 1.5rem;
+  }
+
+  .reelCard {
+    width: 40vw;
+    height: calc(40vw * 1.777);
+  }
+
+  .title3d {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .reelCard {
+    width: 30vw;
+    height: calc(30vw * 1.777);
+    max-width: 350px;
+    max-height: calc(350px * 1.777);
+  }
+
+  .storyDescription {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .reelContainer {
+    justify-content: center;
+  }
+
+  .reelCard {
+    width: 25vw;
+    height: calc(25vw * 1.777);
+  }
+}

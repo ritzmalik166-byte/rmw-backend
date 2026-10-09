@@ -1,0 +1,59 @@
+/**
+ * About Section6 — linear scale 1024px–1365px only (1366px+ = default Tailwind).
+ */
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .root {
+    --s6: clamp(0, calc((100vw - 1024px) / 342px), 1);
+    padding-bottom: calc(52.525622px + 17.474378px * var(--s6)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(37.518302px + 12.481698px * var(--s6)) !important;
+    padding-right: calc(37.518302px + 12.481698px * var(--s6)) !important;
+  }
+
+  .root .frame {
+    height: calc(319.234261px + 106.765739px * var(--s6)) !important;
+  }
+
+  .root .playBtn {
+    width: calc(40.519766px + 13.480234px * var(--s6)) !important;
+    height: calc(40.519766px + 13.480234px * var(--s6)) !important;
+  }
+
+  .root .playIcon {
+    width: calc(7.50366px + 2.49634px * var(--s6)) !important;
+    height: calc(8.253294px + 2.746706px * var(--s6)) !important;
+  }
+}
+
+/**
+ * Tablet only (768px–1023px): proportional scale vs 1366 reference.
+ * Preserve desktop layout/positioning exactly (no reflow changes).
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    --s6md: calc(100vw / 1366px);
+    padding-bottom: calc(70px * var(--s6md)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(50px * var(--s6md)) !important;
+    padding-right: calc(50px * var(--s6md)) !important;
+  }
+
+  .root .frame {
+    height: calc(426px * var(--s6md)) !important;
+  }
+
+  .root .playBtn {
+    width: calc(54px * var(--s6md)) !important;
+    height: calc(54px * var(--s6md)) !important;
+  }
+
+  .root .playIcon {
+    width: calc(10px * var(--s6md)) !important;
+    height: calc(11px * var(--s6md)) !important;
+  }
+}

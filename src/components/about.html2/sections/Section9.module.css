@@ -1,0 +1,147 @@
+/**
+ * About Section9 — linear scale 1024px–1365px only (1366px+ uses base layout).
+ */
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .root {
+    --s9: clamp(0, calc((100vw - 1024px) / 342px), 1);
+    padding-top: calc(52.525622px + 17.474378px * var(--s9)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(37.518302px + 12.481698px * var(--s9)) !important;
+    padding-right: calc(37.518302px + 12.481698px * var(--s9)) !important;
+  }
+
+  .root .topCard {
+    border-radius: calc(3.751098px + 1.248902px * var(--s9)) !important;
+    padding: calc(29.985359px + 10.014641px * var(--s9)) !important;
+    gap: calc(12.005865px + 3.994135px * var(--s9)) !important;
+  }
+
+  .root .heading {
+    font-size: calc(26.994144px + 9.005856px * var(--s9)) !important;
+  }
+
+  .root .subheading {
+    font-size: calc(16.49634px + 5.50366px * var(--s9)) !important;
+  }
+
+  .root .desc {
+    max-width: calc(629.736457px + 210.263543px * var(--s9)) !important;
+    font-size: calc(11.997072px + 4.002928px * var(--s9)) !important;
+  }
+
+  .root .leftCol {
+    width: calc(100% - (642.643485px + 214.356515px * var(--s9))) !important;
+    padding-top: calc(23.988287px + 8.011713px * var(--s9)) !important;
+    padding-bottom: calc(23.988287px + 8.011713px * var(--s9)) !important;
+    gap: calc(8.998536px + 3.001464px * var(--s9)) !important;
+  }
+
+  .root .metric206 {
+    max-width: calc(154.395315px + 51.604685px * var(--s9)) !important;
+  }
+
+  .root .metric236 {
+    max-width: calc(176.881406px + 59.118594px * var(--s9)) !important;
+  }
+
+  .root .metricNum {
+    font-size: calc(23.994144px + 8.005856px * var(--s9)) !important;
+  }
+
+  .root .metricText {
+    font-size: calc(11.997072px + 4.002928px * var(--s9)) !important;
+  }
+
+  .root .rightCol {
+    width: calc(642.643485px + 214.356515px * var(--s9)) !important;
+    max-width: calc(642.643485px + 214.356515px * var(--s9)) !important;
+  }
+
+  .root .badge {
+    max-width: calc(210.60205px + 70.39795px * var(--s9)) !important;
+    max-height: calc(87.664714px + 29.335286px * var(--s9)) !important;
+    padding: calc(23.988287px + 8.011713px * var(--s9)) !important;
+  }
+
+  .root .badgeText {
+    font-size: calc(13.495608px + 4.504392px * var(--s9)) !important;
+  }
+}
+
+/**
+ * Tablet only (768px–1023px): proportional scale vs 1366 reference.
+ * Preserve desktop structure, ordering, and alignment (no reflow changes).
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    --s9md: calc(100vw / 1366px);
+    padding-top: calc(70px * var(--s9md)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(50px * var(--s9md)) !important;
+    padding-right: calc(50px * var(--s9md)) !important;
+  }
+
+  .root .topCard {
+    border-radius: calc(5px * var(--s9md)) !important;
+    padding: calc(40px * var(--s9md)) !important;
+    gap: calc(16px * var(--s9md)) !important;
+  }
+
+  .root .heading {
+    font-size: calc(36px * var(--s9md)) !important;
+  }
+
+  .root .subheading {
+    font-size: calc(22px * var(--s9md)) !important;
+  }
+
+  .root .desc {
+    max-width: calc(840px * var(--s9md)) !important;
+    font-size: calc(16px * var(--s9md)) !important;
+  }
+
+  .root .leftCol {
+    width: calc(100% - (857px * var(--s9md))) !important;
+    padding-top: calc(32px * var(--s9md)) !important;
+    padding-bottom: calc(32px * var(--s9md)) !important;
+    gap: calc(12px * var(--s9md)) !important;
+    min-width: 0;
+  }
+
+  .root .metric206 {
+    max-width: calc(206px * var(--s9md)) !important;
+  }
+
+  .root .metric236 {
+    max-width: calc(236px * var(--s9md)) !important;
+  }
+
+  .root .metricNum {
+    font-size: calc(32px * var(--s9md)) !important;
+  }
+
+  .root .metricText {
+    font-size: calc(16px * var(--s9md)) !important;
+  }
+
+  .root .rightCol {
+    width: calc(857px * var(--s9md)) !important;
+    max-width: calc(857px * var(--s9md)) !important;
+    min-width: 0;
+  }
+
+  .root .badge {
+    max-width: calc(281px * var(--s9md)) !important;
+    max-height: calc(117px * var(--s9md)) !important;
+    padding: calc(32px * var(--s9md)) !important;
+  }
+
+  .root .badgeText {
+    font-size: calc(18px * var(--s9md)) !important;
+  }
+}

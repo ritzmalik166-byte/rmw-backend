@@ -1,0 +1,49 @@
+/**
+ * Section2M — two-row layout (intro + team, then split stats/reviews).
+ * Typography and component sizing inherit Section2.module.css via shared class names under .root.
+ */
+
+.rowIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.rowSplit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #d9d9d9;
+}
+
+.splitLeft {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.splitRight {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 480px) {
+  .rowIntro {
+    gap: 0.75rem;
+  }
+
+  .rowSplit {
+    gap: 1.25rem;
+    margin-top: 2.25rem;
+    padding-top: 2.25rem;
+  }
+}

@@ -1,0 +1,859 @@
+/* Container */
+.container {
+  position: fixed;
+  bottom: 1rem;
+  right: 0.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Sub Buttons (Phone, WhatsApp, Chatbot) */
+.subButton {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  z-index: 20;
+  bottom: 0;
+  border: none;
+  padding: 0;
+}
+
+.subButton:hover {
+  background-color: #f3f4f6;
+}
+
+.subButton:active {
+  transform: scale(0.95);
+}
+
+/* Button States */
+.buttonInactive {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(0) scale(0.5);
+}
+
+.buttonActive {
+  pointer-events: auto;
+}
+
+/* Icons */
+.botIcon {
+  object-fit: contain;
+}
+
+.whatsappIcon {
+  width: 24px;
+  height: 24px;
+  color: #F3830E;
+}
+
+.phoneIcon {
+  width: 24px;
+  height: 24px;
+  color: #F3830E;
+}
+
+/* Main Toggle Button */
+.mainButton {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 30;
+  border: none;
+  padding: 0;
+}
+
+.mainButton:hover {
+  transform: scale(1.1);
+}
+
+.mainButton:active {
+  transform: scale(0.95);
+}
+
+/* Main Icon (for GSAP animation) */
+.mainIcon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  color: #F3830E;
+  transition: opacity 0.3s;
+}
+
+
+.iconVisible {
+  opacity: 1;
+}
+
+.iconHidden {
+  opacity: 0;
+}
+
+/* ============================================
+   RubyBotBootstrap Styles
+   ============================================ */
+
+/* Chat Container */
+.chatContainer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .chatContainer {
+    inset: auto;
+    bottom: 1rem;
+    right: 1rem;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .chatContainer {
+    right: 4rem;
+  }
+}
+
+/* Chat Window */
+.chatWindow {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100vw - 2rem);
+}
+
+@media (min-width: 640px) {
+  .chatWindow {
+    width: 400px;
+    height: 600px;
+    max-height: calc(100vh - 8rem);
+    border-radius: 0.75rem;
+  }
+}
+
+/* Header */
+.header {
+  background-color: #bc8429;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.75rem 0.75rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .header {
+    padding: 0.75rem 1rem;
+  }
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .headerLeft {
+    gap: 0.75rem;
+  }
+}
+
+.avatarContainer {
+  position: relative;
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.statusIndicator {
+  position: absolute;
+  bottom: -0.125rem;
+  right: -0.125rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #10b981;
+  border-radius: 50%;
+  border: 2px solid #19d408;
+}
+
+@media (min-width: 640px) {
+  .statusIndicator {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: -20px;
+}
+
+.headerTitle {
+  color: white;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+@media (min-width: 640px) {
+  .headerTitle {
+    font-size: 0.875rem;
+  }
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.statusText {
+  font-size: 0.625rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 640px) {
+  .statusText {
+    font-size: 0.75rem;
+  }
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.closeButton {
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  padding: 0.375rem;
+  touch-action: manipulation;
+}
+
+.closeButton:hover {
+  color: white;
+  transform: rotate(360deg);
+}
+
+@media (min-width: 640px) {
+  .closeButton {
+    padding: 0.25rem;
+  }
+}
+
+.closeIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Message Area */
+.messageArea {
+  flex: 1;
+  overflow-y: auto;
+  background-color: white;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .messageArea {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+}
+
+/* Message Rows */
+.messageRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.userMessageRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.avatarSpacer {
+  width: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .avatarSpacer {
+    width: 1.5rem;
+  }
+}
+
+.messageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 85%;
+}
+
+@media (min-width: 640px) {
+  .messageContent {
+    max-width: 75%;
+  }
+}
+
+/* Bot Avatar */
+.botAvatar {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid #001697;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .botAvatar {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.botAvatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Messages */
+.botMessage {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1.5rem;
+  border-bottom-left-radius: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1.625;
+  white-space: pre-line;
+}
+
+@media (min-width: 640px) {
+  .botMessage {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+.userMessage {
+  background-color: #001697;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1.5rem;
+  border-bottom-right-radius: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1.625;
+  white-space: pre-line;
+}
+
+@media (min-width: 640px) {
+  .userMessage {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Typing Indicator */
+.typingDots {
+  display: flex;
+  gap: 0.375rem;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.typingDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #6b7280;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Enquiry Button */
+.enquiryButton {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background-color: #001697;
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  touch-action: manipulation;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.enquiryButton:hover {
+  background-color: #001580;
+}
+
+.enquiryButton:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 640px) {
+  .enquiryButton {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Enquiry Form */
+.enquiryFormContainer {
+  padding: 0 0.75rem 0.75rem;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+@media (min-width: 640px) {
+  .enquiryFormContainer {
+    padding: 0 1rem 0.75rem;
+  }
+}
+
+.enquiryFormContent {
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.enquiryFormContent > * + * {
+  margin-top: 0.75rem;
+}
+
+.enquiryFormHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.enquiryFormTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.enquiryFormCloseButton {
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0.25rem;
+  border: none;
+  background: none;
+}
+
+.enquiryFormCloseButton:hover {
+  color: #1f2937;
+}
+
+.enquiryFormCloseIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.phoneRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .phoneRow {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .phoneRow .formSelect {
+    flex: 0 0 auto;
+    width: min(42%, 9.5rem);
+    min-width: 7rem;
+  }
+
+  .phoneRow .formInput {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* Form Inputs */
+.formInput,
+.formTextarea,
+.formSelect {
+  width: 100%;
+  height: 41px !important;
+  padding: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  outline: none;
+  background-color: white;
+  box-sizing: border-box;
+  padding-left: 15px !important;
+  padding-right: 0.75rem;
+}
+
+.formInput:focus,
+.formTextarea:focus,
+.formSelect:focus {
+  border-color: #001697;
+  box-shadow: 0 0 0 1px #001697;
+  outline: none;
+}
+
+.formTextarea {
+  resize: none;
+  height: auto;
+  min-height: 4rem;
+  padding-top: 10px !important;
+}
+
+.formSelect {
+  cursor: pointer;
+  appearance: auto;
+}
+
+@media (min-width: 640px) {
+  .formInput,
+  .formSelect {
+    font-size: 0.875rem;
+    height: 2.25rem;
+  }
+  
+  .formTextarea {
+    font-size: 0.875rem;
+    min-height: 4.5rem;
+  }
+}
+
+/* Form Buttons */
+.formButtons {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+.submitButton {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  background-color: #001697;
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  touch-action: manipulation;
+  border: none;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.submitButton:hover {
+  background-color: #001580;
+}
+
+.submitButton:active {
+  transform: scale(0.95);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submitButton:disabled:hover {
+  background-color: #001697;
+}
+
+@media (min-width: 640px) {
+  .submitButton {
+    font-size: 0.875rem;
+  }
+}
+
+.cancelButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  color: #1f2937;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 0.2s;
+  background-color: white;
+}
+
+.cancelButton:hover {
+  background-color: #f3f4f6;
+}
+
+.cancelButton:active {
+  transform: scale(0.95);
+}
+
+.cancelButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (min-width: 640px) {
+  .cancelButton {
+    font-size: 0.875rem;
+  }
+}
+
+/* Spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+  height: 1rem;
+  width: 1rem;
+  color: white;
+}
+
+.spinnerCircle {
+  opacity: 0.25;
+}
+
+.spinnerPath {
+  opacity: 0.75;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Quick Replies */
+.quickRepliesContainer {
+  padding: 0 0.75rem 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .quickRepliesContainer {
+    padding: 0 1rem 0.75rem;
+  }
+}
+
+.quickReplies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quickReplyButton {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #001697;
+  color: #001697;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.2s;
+  background-color: white;
+}
+
+.quickReplyButton:hover {
+  background-color: #001697;
+  color: white;
+}
+
+.quickReplyButton:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 640px) {
+  .quickReplyButton {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #e5e7eb;
+  background-color: white;
+  border-radius: 0 0 0.75rem 0.75rem;
+  flex-shrink: 0;
+}
+
+.footerInputContainer {
+  padding-right: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .footerInputContainer {
+    padding-right: 1rem;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.messageInput {
+  flex: 1;
+  font-size: 0.75rem;
+  color: #1f2937;
+  outline: none;
+  background-color: transparent;
+  padding: 0.375rem 0;
+  border: none !important;
+}
+
+.messageInput::placeholder {
+  color: #6b7280;
+}
+
+@media (min-width: 640px) {
+  .messageInput {
+    font-size: 0.875rem;
+    padding: 0;
+  }
+}
+
+.sendButton {
+  color: #001697;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0.375rem;
+  touch-action: manipulation;
+  border: none;
+  background: none;
+}
+
+.sendButton:hover {
+  color: #001697;
+}
+
+.sendButton:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 640px) {
+  .sendButton {
+    padding: 0.25rem;
+  }
+}
+
+.sendIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+}
+
+.footerText {
+  padding: 0 0.75rem 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .footerText {
+    padding: 0 1rem 0.5rem;
+  }
+}
+
+.footerCredits {
+  font-size: 0.5625rem;
+  color: #6b7280;
+  text-align: right;
+}
+
+@media (min-width: 640px) {
+  .footerCredits {
+    font-size: 0.625rem;
+  }
+}
+

@@ -1,0 +1,6 @@
+@media (min-width: 1454px) {
+   .absDiv {
+    display: hidden !important;
+    opacity: 0 !important;
+   } 
+}

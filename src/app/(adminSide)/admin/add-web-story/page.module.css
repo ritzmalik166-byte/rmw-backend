@@ -1,0 +1,94 @@
+.pageContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #1f2937;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.field input,
+.field select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f9fafb;
+  color: #111827;
+}
+
+.colorRow {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.colorField {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.colorField label {
+  margin-bottom: 0.5rem;
+}
+
+.imgPreview {
+  width: 100%;
+  max-width: 300px;
+  margin-top: 1rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  object-fit: cover;
+}
+
+.submitButton {
+  background-color: #9a7530;
+  color: white;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #9a7530;
+}
+
+@media screen and (max-width: 600px) {
+  .pageContainer {
+    padding: 1rem;
+  }
+
+  .colorRow {
+    flex-direction: column;
+  }
+}

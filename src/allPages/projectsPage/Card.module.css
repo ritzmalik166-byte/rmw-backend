@@ -1,0 +1,45 @@
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+.imageContainer {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 0px;
+
+}
+
+.image {
+  transition: transform 0.4s ease-in-out;
+}
+
+.card:hover .image {
+  transform: scale(1.1);
+}
+
+.button {
+  position: relative;
+  transition: all 0.3s;
+  margin-top: 1.5rem;
+  color:#6ea2ee ;
+  font-weight: 600;
+  width: 100%;
+  font-size: 18px;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.button:hover .arrow {
+  transform: translateX(5px);
+}
+
+.swiper-wrapper{
+  transition-timing-function: linear !important;
+}

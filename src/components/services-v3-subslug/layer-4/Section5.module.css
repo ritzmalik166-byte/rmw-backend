@@ -1,0 +1,44 @@
+.containerWidth {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .containerWidth {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1379px) {
+  .containerWidth {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+  }
+}
+
+@media (min-width: 1370px) {
+  .containerWidth {
+    width: 1300px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+.clientSlider {
+  animation: clientSlider 30s linear infinite;
+  will-change: transform;
+}
+
+.clientSlider:hover {
+  animation-play-state: paused;
+}
+
+@keyframes clientSlider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}

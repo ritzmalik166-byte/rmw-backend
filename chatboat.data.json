@@ -1,0 +1,148 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi", "Hello", "Hey", "Good morning", "What's up?", "Howdy"
+      ],
+      "responses": [
+        "Hello! Welcome to Ritz Media World. How can I assist you today?",
+        "Hi there! Ready to amplify your brand? What brings you here?",
+        "Hey! Excited to chat about your marketing needs. What can I help with?"
+      ],
+      "context_set": "greeting"
+    },
+    {
+      "tag": "company_info",
+      "patterns": [
+        "Tell me about your company",
+        "Who is Ritz Media World?",
+        "What do you do?",
+        "Describe your agency"
+      ],
+      "responses": [
+        "We're a full-stack media agency obsessed with making brands impossible to ignore. Since 2002, we've delivered 500+ campaigns across real estate, politics, FMCG and more. We combine strategy, creativity and performance to drive real business growth.",
+        "Ritz Media World is your growth partner - we build campaigns that convert, content that compels, and strategies that scale. Not just ads, but entire marketing ecosystems tailored to your goals."
+      ]
+    },
+    {
+      "tag": "service_inquiry",
+      "patterns": [
+        "What services do you offer?",
+        "What can you help with?",
+        "What marketing services do you provide?",
+        "Do you do [digital/print/ATL/influencer] marketing?"
+      ],
+      "responses": [
+        "We offer 360° marketing solutions:\n\n- Digital Marketing (SEO, Ads, Social)\n- Content Creation\n- Branding & Creative\n- Influencer & Celebrity Campaigns\n- Print/Radio/ATL Media Buying\n- AI Content Generation\n\nWhich service interests you most?",
+        "Our core services include:\n\n🔹 Performance Marketing\n🔹 Creative Strategy\n🔹 Media Planning/Buying\n🔹 Experiential Events\n🔹 Political Campaigns\n\nWant me to detail any specific service?"
+      ],
+      "context_set": "service_selection"
+    },
+    {
+      "tag": "pricing_general",
+      "patterns": [
+        "How much do you charge?",
+        "What are your rates?",
+        "Pricing?",
+        "Cost for services?"
+      ],
+      "responses": [
+        "Our pricing is customized, but here are starting points:\n\n- Digital Marketing: ₹30K/month\n- Content: ₹15K/month\n- Branding: ₹35K/project\n\nFor precise quotes, may I know:\n1. Your industry\n2. Target cities\n3. Campaign goals?",
+        "Prices vary by scope, but to give you an idea:\n\n📌 Website Development: ₹25K+\n📌 Influencer Campaigns: ₹10K+\n📌 ATL Media Buying: Custom\n\nWant a tailored estimate? Share your needs!"
+      ],
+      "context_set": "pricing_qualification"
+    },
+    {
+      "tag": "objection_expensive",
+      "patterns": [
+        "Too expensive",
+        "Other agencies charge less",
+        "Can you lower your price?",
+        "Budget is tight"
+      ],
+      "responses": [
+        "We completely understand budget concerns. While we're not the cheapest, we're the most efficient - our campaigns average 3.2X ROI because we eliminate wasted spend. Could we show you a cost vs. return comparison?",
+        "Fair point! Many clients initially think this, then realize our work actually saves money by:\n\n✅ Higher conversion rates\n✅ Lower customer acquisition costs\n✅ Long-term brand equity\n\nWant to explore a smaller pilot project first?"
+      ],
+      "context_set": "objection_handling"
+    },
+    {
+      "tag": "case_studies",
+      "patterns": [
+        "Show me examples",
+        "Past work?",
+        "Case studies",
+        "Portfolio"
+      ],
+      "responses": [
+        "Here are highlights:\n\n🏢 Real Estate: Generated 6,000+ leads in 30 days for a Noida developer\n🛍️ D2C: Scaled a wellness brand to ₹6L/month in 60 days\n🎤 Political: Boosted candidate recall by 3X in Tier 3 areas\n\nWant details on any specific industry?",
+        "Our recent successes include:\n\n- 240% lead increase for fertility clinic\n- 4.9★ Google rating for cosmetic clinic\n- ₹1.5Cr sales from influencer campaign\n\nWhich case study interests you?"
+      ],
+      "context_set": "case_study_selection"
+    },
+    {
+      "tag": "lead_capture",
+      "patterns": [
+        "I want to work with you",
+        "Contact me",
+        "Get started",
+        "Book a meeting"
+      ],
+      "responses": [
+        "Fantastic! To connect you with the right expert:\n\n1. Your name:\n2. Company:\n3. Phone/email:\n4. Key goals:\n\nWe'll respond within 24 hours!",
+        "Excited to collaborate! Please share:\n\n📌 Your name\n📌 Best contact method\n📌 Immediate marketing needs\n\nPro tip: Adding your website helps us prepare better!"
+      ],
+      "context_set": "lead_submission"
+    }
+  ],
+  "contexts": {
+    "service_selection": {
+      "follow_up": {
+        "digital_marketing": {
+          "trigger_phrases": ["digital", "seo", "google ads", "social media"],
+          "response": "Our digital marketing services include:\n\n- Full-funnel strategy\n- Platform-specific campaigns (Meta/Google/TikTok)\n- Conversion rate optimization\n- Retargeting systems\n\nStarting at ₹30K/month. Want pricing details?"
+        },
+        "influencers": {
+          "trigger_phrases": ["influencer", "creators", "collabs"],
+          "response": "We engineer influencer campaigns that convert:\n\n🔍 Creator vetting\n📜 Contract negotiation\n🎬 Content co-creation\n📊 Performance tracking\n\nCampaigns start at ₹10K. Need examples?"
+        }
+      }
+    },
+    "pricing_qualification": {
+      "follow_up": {
+        "real_estate": {
+          "trigger_phrases": ["real estate", "property", "developer"],
+          "response": "For real estate, typical budgets:\n\n- Digital Launch Package: ₹1.5-3L/month\n- ATL Blitz (Print+Radio): ₹5L+\n- Full 360° Campaign: ₹8L+\n\nWant a breakdown?"
+        },
+        "d2c": {
+          "trigger_phrases": ["d2c", "ecommerce", "product"],
+          "response": "D2C brands typically invest:\n\n- Meta/Google: ₹50-80K/month\n- Influencers: ₹20-50K\n- Content Production: ₹25K+\n\nWe optimize for ROAS. Share your targets!"
+        }
+      }
+    },
+    "lead_submission": {
+      "follow_up": {
+        "contact_received": {
+          "trigger_phrases": ["John", "9998887776", "example@email.com"],
+          "response": "Thank you! A specialist will contact you shortly. Meanwhile, check our [portfolio](ritzmediaworld.com/work). Need immediate help? Call +91-7290002168."
+        }
+      }
+    }
+  },
+  "fallbacks": {
+    "default": [
+      "I'm still learning! For immediate help, email info@ritzmediaworld.com or call +91-7290002168.",
+      "Let me connect you to a human expert. Could you share your contact details?"
+    ],
+    "escalation": {
+      "threshold": 2,
+      "response": "I'll have a senior strategist reach out. Please share:\n1. Your name\n2. Contact info\n3. Best time to call\n\nWe value your time!"
+    }
+  },
+  "metadata": {
+    "version": "2.1",
+    "last_updated": "2023-11-15",
+    "industries_covered": ["real_estate", "d2c", "healthcare", "education", "political", "b2b"]
+  }
+}

@@ -1,0 +1,259 @@
+/**
+ * About Section7 — linear scale 1024px–1365px only (1366px+ = default Tailwind).
+ */
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .root {
+    --s7: clamp(0, calc((100vw - 1024px) / 342px), 1);
+  }
+
+  .root .container {
+    padding-left: calc(37.518302px + 12.481698px * var(--s7)) !important;
+    padding-right: calc(37.518302px + 12.481698px * var(--s7)) !important;
+  }
+
+  .root .stack {
+    gap: calc(24.011727px + 7.988273px * var(--s7)) !important;
+  }
+
+  .root .hero {
+    gap: calc(6.002933px + 1.997067px * var(--s7)) !important;
+  }
+
+  .root .eyebrow {
+    font-size: calc(12.005466px + 3.994534px * var(--s7)) !important;
+  }
+
+  .root .title {
+    font-size: calc(27.013177px + 8.986823px * var(--s7)) !important;
+    max-width: calc(543.1918px + 181.8082px * var(--s7)) !important;
+  }
+
+  .root .row {
+    gap: calc(12.005865px + 3.994135px * var(--s7)) !important;
+  }
+
+  .root .card {
+    flex-shrink: 0;
+    width: calc(293.914348px + 98.085652px * var(--s7)) !important;
+    height: calc(342.051098px + 113.948902px * var(--s7)) !important;
+    border-radius: calc(3.751098px + 1.248902px * var(--s7)) !important;
+  }
+
+  .root .cardPad {
+    padding: calc(29.985359px + 10.014641px * var(--s7)) !important;
+  }
+
+  .root .body {
+    font-size: calc(12.005466px + 3.994534px * var(--s7)) !important;
+  }
+
+  .root .bodyNarrow {
+    max-width: calc(230.078303px + 76.921697px * var(--s7)) !important;
+  }
+
+  .root .iconStack {
+    gap: calc(9.004399px + 2.995601px * var(--s7)) !important;
+  }
+
+  .root .bulb {
+    width: calc(61.469985px + 20.530015px * var(--s7)) !important;
+    max-width: calc(61.469985px + 20.530015px * var(--s7)) !important;
+    height: auto !important;
+  }
+
+  .root .visionTitle {
+    font-size: calc(27.013177px + 8.986823px * var(--s7)) !important;
+  }
+
+  .root .arrow {
+    width: calc(73.464129px + 24.535871px * var(--s7)) !important;
+    max-width: calc(73.464129px + 24.535871px * var(--s7)) !important;
+    height: auto !important;
+  }
+
+  .root .mission {
+    font-size: calc(15.75549px + 5.24451px * var(--s7)) !important;
+  }
+}
+
+/**
+ * Tablet only (768px–1023px): proportional scale vs 1366 reference.
+ * Preserve desktop structure exactly (no direction/order/wrap changes).
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    --s7md: calc(100vw / 1366px);
+  }
+
+  .root .container {
+    padding-left: calc(50px * var(--s7md)) !important;
+    padding-right: calc(50px * var(--s7md)) !important;
+  }
+
+  .root .stack {
+    gap: calc(32px * var(--s7md)) !important;
+  }
+
+  .root .hero {
+    gap: calc(8px * var(--s7md)) !important;
+  }
+
+  .root .eyebrow {
+    font-size: calc(16px * var(--s7md)) !important;
+  }
+
+  .root .title {
+    font-size: calc(36px * var(--s7md)) !important;
+    max-width: calc(725px * var(--s7md)) !important;
+  }
+
+  .root .row {
+    gap: calc(16px * var(--s7md)) !important;
+    min-width: 0;
+  }
+
+  .root .card {
+    flex-shrink: 0;
+    width: calc(392px * var(--s7md)) !important;
+    max-width: calc(392px * var(--s7md)) !important;
+    height: calc(456px * var(--s7md)) !important;
+    border-radius: calc(5px * var(--s7md)) !important;
+    min-width: 0;
+  }
+
+  .root .cardPad {
+    padding: calc(40px * var(--s7md)) !important;
+  }
+
+  .root .body {
+    font-size: calc(16px * var(--s7md)) !important;
+  }
+
+  .root .bodyNarrow {
+    max-width: calc(307px * var(--s7md)) !important;
+  }
+
+  .root .iconStack {
+    gap: calc(12px * var(--s7md)) !important;
+  }
+
+  .root .bulb {
+    width: calc(82px * var(--s7md)) !important;
+    max-width: calc(82px * var(--s7md)) !important;
+    height: auto !important;
+  }
+
+  .root .visionTitle {
+    font-size: calc(36px * var(--s7md)) !important;
+  }
+
+  .root .arrow {
+    width: calc(98px * var(--s7md)) !important;
+    max-width: calc(98px * var(--s7md)) !important;
+    height: auto !important;
+  }
+
+  .root .mission {
+    font-size: calc(21px * var(--s7md)) !important;
+  }
+}
+
+/**
+ * Below md (max-width 767px): hero on top, cards stacked (column), centered copy and icons.
+ */
+@media (max-width: 767px) {
+  .root .container {
+    padding-left: max(1rem, env(safe-area-inset-left, 0px)) !important;
+    padding-right: max(1rem, env(safe-area-inset-right, 0px)) !important;
+  }
+
+  .root .stack {
+    gap: 1.75rem !important;
+    align-items: center !important;
+  }
+
+  .root .hero {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .root .eyebrow {
+    font-size: 12px !important;
+  }
+
+  .root .title {
+    font-size: clamp(1.25rem, 4.5vw, 1.625rem) !important;
+    line-height: 1.35 !important;
+    max-width: 100% !important;
+  }
+
+  .root .row {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+
+  .root .card {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .root .cardPad {
+    padding: 1rem !important;
+  }
+
+  .root .cardMedia {
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+
+  .root .body {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+    text-align: center !important;
+  }
+
+  .root .bodyNarrow {
+    max-width: 100% !important;
+  }
+
+  .root .iconStack {
+    align-items: center !important;
+    width: 100%;
+  }
+
+  .root .bulb {
+    width: clamp(40px, 18vw, 56px) !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .root .visionTitle {
+    font-size: clamp(0.875rem, 3.5vw, 1.125rem) !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+  }
+
+  .root .arrow {
+    width: clamp(44px, 20vw, 64px) !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .root .mission {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+  }
+}

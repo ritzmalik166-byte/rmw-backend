@@ -1,0 +1,194 @@
+.container {
+  padding: 2rem;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #0b1623;
+}
+
+.searchBar {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid #ccc;
+  margin: 0 auto 2rem auto;
+  display: block;
+  font-size: 1rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cardBody {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #555;
+  height: 3rem;
+  overflow: hidden;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pages {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.active {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  padding: 0.4rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.inactive {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 0.4rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #444;
+  transition: color 0.2s ease;
+}
+
+.actions button:hover {
+  color: #c59d4f;
+}
+
+.pagination {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pageBtn {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pageBtn:hover {
+  background-color: #c59d4f;
+  color: white;
+  border-color: #c59d4f;
+}
+
+.active {
+  background-color: #c59d4f;
+  color: white;
+  border-color: #c59d4f;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .cardBody {
+    padding: 0.75rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .actions {
+    gap: 0.5rem;
+  }
+
+  .searchBar {
+    max-width: 100%;
+  }
+}
+.createBtn {
+  background-color: #c59d4f;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(197, 157, 79, 0.3);
+  margin-bottom: 10px;
+}
+
+.createBtn:hover {
+  background-color: #9a7530;
+  transform: scale(1.05);
+}
+
+.createBtn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 5px rgba(197, 157, 79, 0.3);
+}

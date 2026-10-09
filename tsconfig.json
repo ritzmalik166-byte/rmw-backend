@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "typeRoots": ["./types", "./node_modules/@types"]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    "src/middleware.ts",
+    ".next/types/**/*.ts",
+    "src/app/(adminSide)/admin/content/page.tsx",
+    "src/app/(adminSide)/admin/menu/page.jsx",
+    "src/app/(adminSide)/admin/menu_category/page.tsx",
+    "src/app/(adminSide)/admin/home/kaam_hai_mera/page.jsx",
+    "src/app/(adminSide)/admin/home/networthy_assets/page.jsx",
+    "src/app/(adminSide)/admin/home/testimonials/page.jsx",
+    "src/app/(adminSide)/admin/home/customers/page.jsx",
+    "src/app/(adminSide)/admin/services/page.jsx",
+    "src/app/(adminSide)/admin/mediabanner/page.jsx",
+    "src/app/(adminSide)/admin/howitworks/page.jsx",
+    "src/app/(adminSide)/admin/enqury/page.jsx",
+    "src/app/(adminSide)/admin/enqury/enquries/page.jsx",
+    "src/blogContext/BlogContext.tsx",
+    "src/app/api/ritz_blogs/add-new-blog/route.js",
+    "src/models/Blog.Schema.js",
+    "src/app/api/ritz_blogs/get-all-blogs/route.js",
+    "src/allPages/blogPage/blog-card/BlogCCard.jsx",
+    "src/models/RitzCats.Schema.ts",
+    "src/helper/convertPostalData.js"
+, "src/app/api/eImgs/[imageName]/route.js", "src/components/Editor/Editor.tsx", "src/app/RitzBOT/RitzBoatUi.jsx", "src/components/Lenis/SmoothScroller.jsx", "src/app/api/get-services-backup/route.js", "src/ruby-context/ruby.context.jsx", "src/app/(rmw-v2)/services/Real-Estate-Walkthrough/sections/our-process.jsx"  ],
+  "exclude": ["node_modules", ".next"]
+}

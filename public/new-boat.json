@@ -1,0 +1,92 @@
+{
+  "title": "Ritz Media World",
+  "message": "Welcome to Ritz Media World, where strategy, creativity, and measurable growth meet. Explore our solutions across digital, creative, media, and PR. Choose a track to see exactly how we plan, execute, and report outcomes for your brand. Ready to move fast? Pick a service below to begin today now.",
+  "help": "What can we help you with today?",
+  "services": [
+    {
+      "title": "Digital Marketing",
+      "description": "Grow faster with targeted, measurable campaigns across search, social, and video. We plan, launch, and optimize for leads and revenue, backed by GA4 analytics and clear reporting. From SEO to Performance Max, every rupee works harder so you scale predictably and profitably. Includes CRO, landing pages, marketing automation, and CRM integrations.",
+      "cta": [
+        "See case studies",
+        "Get a proposal",
+        "Talk to an expert",
+        "Fill lead form"
+      ]
+    },
+    {
+      "title": "Creative Services",
+      "description": "Make customers stop, feel, and act. We turn brand strategy into striking visuals, persuasive copy, and video ideas that travel across media. From identity to daily social creatives, our work builds recall and makes performance campaigns convert better, on time, on brief, and on budget. We A/B test creative variations continuously.",
+      "cta": [
+        "View portfolio",
+        "Get a quote",
+        "Talk to creative team",
+        "Fill lead form"
+      ]
+    },
+    {
+      "title": "Generative AI",
+      "description": "Supercharge creativity and efficiency with responsible Generative AI. We ideate faster, personalize at scale, and automate production, without losing brand voice. From AI-assisted design to chatbot workflows and GEO, our approach blends human direction with model power for measurable lift in speed, quality, and cost.",
+      "cta": ["See AI Demos", "Get Pricing & Timeline", "Fill Lead Form"]
+    },
+    {
+      "title": "Print Advertising",
+      "description": "Reach audiences that still trust ink. We plan editions, negotiate rates, design attention-grabbing layouts, and manage insertions end-to-end. Target by city or region, launch quickly, and receive proof of publication plus post-campaign reports. Traditional reach with modern rigor, built to drive store walks and qualified leads. Scale nationally when timing matters.",
+      "cta": [
+        "Check rates",
+        "Plan my insert",
+        "Talk to a media planner",
+        "Fill lead form"
+      ]
+    },
+    {
+      "title": "Radio Advertising",
+      "description": "Own the commute with memorable audio. We script, cast voices, produce spots and jingles, and schedule FCT to match peak listening. Add RJ mentions and integrations for credibility. Track delivery and impact via logs and lift studies. High-frequency storytelling that drives response beyond the dial. Drive footfalls, calls, and searches.",
+      "cta": [
+        "Hear sample spots",
+        "Get media plan",
+        "Talk to radio specialist",
+        "Fill lead form"
+      ]
+    },
+    {
+      "title": "Content Marketing",
+      "description": "Turn expertise into demand. We plan editorial calendars, write articles, craft reels and scripts, and package thought leadership that ranks and converts. Repurpose smartly across email, PR, and social. Measured with engagement and assisted conversions, content compounds over time to reduce acquisition costs sustainably. Build trust, backlinks, and brand memory.",
+      "cta": [
+        "See samples",
+        "Plan my calendar",
+        "Talk to content lead",
+        "Fill lead form"
+      ]
+    },
+    {
+      "title": "Web Development",
+      "description": "Websites built to convert. Fast, secure, and SEO-ready with clean UX, analytics, and automation baked in. From corporate sites to real estate microsites and e-commerce, we ship performance-focused builds and maintain them for speed and security. Your digital front door, designed for growth and trust. Integrate CRM, chat, and lead routing.",
+      "cta": [
+        "View web demos",
+        "Get a build estimate",
+        "Talk to tech lead",
+        "Fill lead form"
+      ]
+    },
+    {
+      "title": "Celebrity Endorsement",
+      "description": "Borrow fame the right way. We shortlist talent, negotiate fairly, lock usage rights, and produce assets aligned to campaign goals. Integrate PR and social rollouts, then track impact responsibly. A clear, compliant pathway from star power to brand preference—without surprises on cost, contracts, or delivery. Maximize relevance, minimize risk, always.",
+      "cta": [
+        "Request roster",
+        "Get costs & timelines",
+        "Talk to celebrity desk",
+        "Fill lead form"
+      ]
+    },
+    {
+      "title": "Influencer Marketing",
+      "description": "Partner with creators your audience trusts. We select by fit, not just reach; manage briefs, timelines, and approvals; and amplify with paid where it counts. Brand-safe execution, transparent reporting, and ROI you can see. Authentic content that sparks conversation and drives measurable action. Whitelisting, disclosure, and compliance included by design.",
+      "cta": [
+        "View sample creators",
+        "Get campaign plan",
+        "Talk to influencer lead",
+        "Fill lead form"
+      ]
+    }
+  ]
+}

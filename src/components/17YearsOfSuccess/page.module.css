@@ -1,0 +1,132 @@
+/* page.module.css */
+.circleContainer {
+  overflow: hidden;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  perspective: 1000px;
+  z-index: 50;
+}
+
+.circle {
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.rotatingText {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotateText 12s linear infinite;
+  z-index: 50;
+}
+
+@keyframes rotateText {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.character {
+  position: absolute;
+  left: 50%;
+  font-weight: bold;
+  color: #4a4a4a;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.centerContent {
+  position: relative;
+  background: rgb(250 250 249);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.animatedDiv {
+  border: 1px solid #daaf72;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  align-items: center;
+  animation: borderScale 3s linear infinite;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes borderScale {
+  0% {
+    opacity: 0;
+    height: 20%;
+    width: 20%;
+  }
+  90% {
+    opacity: 1;
+    height: 95%;
+    width: 95%;
+  }
+  100% {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.smallDiv {
+  background: linear-gradient(90deg, #f1850f, #8b4d09);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+}
+
+.smallDiv img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .circleContainer {
+    right: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .circleContainer {
+    right: 20px;
+    top: 15px;
+  }
+}
+
+@media (max-width: 550px) {
+  .circleContainer {
+    right: 10px;
+    top: 10px;
+    /* z-index: 50; */
+  }
+}
+@media (max-width: 4250px) {
+  .circleContainer {
+    right: 10px;
+    top: 10px;
+    height: 100%;
+    width: auto;
+    /* z-index: 50; */
+  }
+}

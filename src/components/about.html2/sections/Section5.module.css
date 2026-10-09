@@ -1,0 +1,115 @@
+/**
+ * About Section5 — linear scale 1024px–1365px only (1366px+ unchanged).
+ */
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .root {
+    --s5: clamp(0, calc((100vw - 1024px) / 342px), 1);
+    padding-top: calc(52.525622px + 17.474378px * var(--s5)) !important;
+    padding-bottom: calc(52.525622px + 17.474378px * var(--s5)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(37.518302px + 12.481698px * var(--s5)) !important;
+    padding-right: calc(37.518302px + 12.481698px * var(--s5)) !important;
+  }
+
+  .root .row {
+    gap: calc(9.004399px + 2.995601px * var(--s5)) !important;
+  }
+
+  .root .overlay {
+    max-width: calc(418.448023px + 139.551977px * var(--s5)) !important;
+    gap: calc(12.005865px + 3.994135px * var(--s5)) !important;
+  }
+
+  .root .eyebrow {
+    font-size: calc(12.005466px + 3.994534px * var(--s5)) !important;
+  }
+
+  .root .heading {
+    font-size: calc(27.013177px + 8.986823px * var(--s5)) !important;
+    margin-bottom: calc(3.001466px + 0.998534px * var(--s5)) !important;
+  }
+
+  .root .copy {
+    font-size: calc(12.005466px + 3.994534px * var(--s5)) !important;
+  }
+
+  .root .card {
+    width: calc(175.61347px + 58.38653px * var(--s5)) !important;
+    flex-shrink: 0;
+    gap: calc(6.002933px + 1.997067px * var(--s5)) !important;
+  }
+
+  .root .cardTop {
+    gap: calc(6.002933px + 1.997067px * var(--s5)) !important;
+  }
+
+  .root .year {
+    font-size: calc(22.510249px + 7.489751px * var(--s5)) !important;
+  }
+
+  .root .label {
+    font-size: calc(13.506588px + 4.493412px * var(--s5)) !important;
+  }
+}
+
+/**
+ * Tablet only (768px–1023px): proportional scale vs 1366 reference.
+ * Keep desktop structure exactly (no direction/order/wrap changes).
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    --s5md: calc(100vw / 1366px);
+    padding-top: calc(70px * var(--s5md)) !important;
+    padding-bottom: calc(70px * var(--s5md)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(50px * var(--s5md)) !important;
+    padding-right: calc(50px * var(--s5md)) !important;
+  }
+
+  .root .row {
+    gap: calc(12px * var(--s5md)) !important;
+    min-width: 0;
+  }
+
+  .root .overlay {
+    max-width: calc(558px * var(--s5md)) !important;
+    gap: calc(16px * var(--s5md)) !important;
+    min-width: 0;
+  }
+
+  .root .eyebrow {
+    font-size: calc(16px * var(--s5md)) !important;
+  }
+
+  .root .heading {
+    font-size: calc(36px * var(--s5md)) !important;
+    margin-bottom: calc(4px * var(--s5md)) !important;
+  }
+
+  .root .copy {
+    font-size: calc(16px * var(--s5md)) !important;
+  }
+
+  .root .card {
+    width: calc(234px * var(--s5md)) !important;
+    min-width: 0;
+    gap: calc(8px * var(--s5md)) !important;
+  }
+
+  .root .cardTop {
+    gap: calc(8px * var(--s5md)) !important;
+  }
+
+  .root .year {
+    font-size: calc(30px * var(--s5md)) !important;
+  }
+
+  .root .label {
+    font-size: calc(18px * var(--s5md)) !important;
+  }
+}

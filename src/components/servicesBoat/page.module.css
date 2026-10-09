@@ -1,0 +1,94 @@
+/* ServicesBoat.module.css */
+
+/* Full-screen blur backdrop */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  display: none;
+  overflow: hidden;
+}
+
+.servicesContainer {
+  position: fixed;
+  bottom: 43px;
+  right: 20px;
+  height: 70px;
+  width: 70px;
+  z-index: 999;
+}
+
+.servicesBoat {
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  background: #fffcf8;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.servicesBoat:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pulseAnimation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(160, 88, 10, 0.3);
+  z-index: -1;
+}
+
+.boatIcon {
+  width: 24px;
+  height: 24px;
+  color: black;
+}
+
+.boatGifIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.txtureClr {
+  background: white;
+}
+
+/* Spin animation for loading */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .servicesContainer {
+    bottom: 16px;
+    /* right: 70px; */
+  }
+
+  .servicesBoat {
+    width: 100%;
+    height: 100%;
+  }
+}
+

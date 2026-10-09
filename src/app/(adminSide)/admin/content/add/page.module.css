@@ -1,0 +1,100 @@
+.cardContainer {
+  background-color: #e6f4ea; /* Light green background */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.cardForm {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 128, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.imageSection {
+  cursor: pointer;
+  border: 2px dashed #4caf50;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.imageSection:hover {
+  background-color: #f0fff3;
+}
+
+.imagePlaceholder {
+  color: #388e3c;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.previewImage {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+/* 🟢 Use scoped classes only */
+.input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #c8e6c9;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: #f9fff9;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #c8e6c9;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: #f9fff9;
+  transition: border-color 0.2s ease;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.textarea:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.submitBtn {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #388e3c;
+}
+
+.loadingText {
+  font-size: 0.95rem;
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}

@@ -1,0 +1,140 @@
+/**
+ * About Section8 — linear scale 1024px–1365px only (1366px+ = default Tailwind).
+ * Reference = 1366px: xl pt/gaps, lg image grid (400×303, 400×449, 820 wide hero), 36/16 typography, CTA 141×50.
+ */
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .root {
+    --s8: clamp(0, calc((100vw - 1024px) / 342px), 1);
+    padding-top: calc(52.525622px + 17.474378px * var(--s8)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(37.518302px + 12.481698px * var(--s8)) !important;
+    padding-right: calc(37.518302px + 12.481698px * var(--s8)) !important;
+    gap: calc(36.017569px + 11.982431px * var(--s8)) !important;
+  }
+
+  .root .heading {
+    font-size: calc(27.013177px + 8.986823px * var(--s8)) !important;
+  }
+
+  .root .subtitle {
+    font-size: calc(12.005466px + 3.994534px * var(--s8)) !important;
+    max-width: calc(523.785944px + 174.214056px * var(--s8)) !important;
+    padding-left: calc(12.005466px + 3.994534px * var(--s8)) !important;
+    padding-right: calc(12.005466px + 3.994534px * var(--s8)) !important;
+  }
+
+  .root .gapRows {
+    gap: calc(18.008798px + 5.991202px * var(--s8)) !important;
+  }
+
+  .root .tileR1 {
+    flex-shrink: 0;
+    width: calc(299.853587px + 100.146413px * var(--s8)) !important;
+    height: calc(227.139239px + 75.860761px * var(--s8)) !important;
+  }
+
+  .root .sideCol {
+    flex-shrink: 0;
+    width: calc(299.853587px + 100.146413px * var(--s8)) !important;
+  }
+
+  .root .h303 {
+    height: calc(227.139239px + 75.860761px * var(--s8)) !important;
+  }
+
+  .root .h449 {
+    height: calc(336.672767px + 112.327233px * var(--s8)) !important;
+  }
+
+  .root .center {
+    flex-shrink: 0;
+    width: calc(614.713029px + 205.286971px * var(--s8)) !important;
+  }
+
+  .root .btn {
+    width: calc(105.770132px + 35.229868px * var(--s8)) !important;
+    height: calc(37.51098px + 12.48902px * var(--s8)) !important;
+    font-size: calc(11.25549px + 3.74451px * var(--s8)) !important;
+    border-radius: calc(5.99634px + 2.00366px * var(--s8)) !important;
+  }
+}
+
+/**
+ * Tablet only (768px–1023px): keep desktop visual hierarchy/structure.
+ * No order changes, no wrapping, no stacking behavior.
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    --s8md: calc(100vw / 1366px);
+    padding-top: calc(70px * var(--s8md)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(50px * var(--s8md)) !important;
+    padding-right: calc(50px * var(--s8md)) !important;
+    gap: calc(48px * var(--s8md)) !important;
+  }
+
+  .root .heading {
+    font-size: calc(36px * var(--s8md)) !important;
+  }
+
+  .root .subtitle {
+    font-size: calc(16px * var(--s8md)) !important;
+    max-width: calc(698px * var(--s8md)) !important;
+    padding-left: calc(16px * var(--s8md)) !important;
+    padding-right: calc(16px * var(--s8md)) !important;
+  }
+
+  .root .gapRows {
+    gap: calc(24px * var(--s8md)) !important;
+  }
+
+  .root .tileR1 {
+    flex-shrink: 0;
+    width: calc(400px * var(--s8md)) !important;
+    max-width: calc(400px * var(--s8md)) !important;
+    height: calc(303px * var(--s8md)) !important;
+  }
+
+  .root .bottomRow {
+    flex-direction: row !important;
+    align-items: stretch !important;
+    min-width: 0;
+  }
+
+  .root .sideCol {
+    flex-shrink: 0;
+    width: calc(400px * var(--s8md)) !important;
+    max-width: calc(400px * var(--s8md)) !important;
+    min-width: 0;
+  }
+
+  .root .h303 {
+    height: calc(303px * var(--s8md)) !important;
+  }
+
+  .root .h449 {
+    height: calc(449px * var(--s8md)) !important;
+  }
+
+  .root .center {
+    flex-shrink: 0;
+    width: calc(820px * var(--s8md)) !important;
+    max-width: calc(820px * var(--s8md)) !important;
+    min-width: 0;
+    height: auto !important;
+    min-height: 0 !important;
+    align-self: stretch !important;
+  }
+
+  .root .btn {
+    width: calc(141px * var(--s8md)) !important;
+    height: calc(50px * var(--s8md)) !important;
+    font-size: calc(15px * var(--s8md)) !important;
+    border-radius: calc(8px * var(--s8md)) !important;
+  }
+}

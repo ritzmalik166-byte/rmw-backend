@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.montserratMedium {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.montserratBold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.montserratExtraBold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.fontopensans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.poppinsMedium {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.poppinsBold {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.poppinsExtraBold {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+/* !-----------------container-------------------- */
+
+@media (min-width: 1370px) {
+    .page_containerWidth {
+        width: 1366px !important;
+        margin: 0 auto !important;
+        align-self: center !important;
+    }
+}
+
+.letsConnectGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.letsConnectDesktopLayout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.letsConnectLeftGroup,
+.letsConnectRightGroup {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid #E8E8E8;
+    background: #ffffff;
+}
+
+.letsConnectLeftGroup > div,
+.letsConnectRightGroup > div {
+    min-height: 180px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.letsConnectLeftGroup > div:last-child,
+.letsConnectRightGroup > div:last-child {
+    border-bottom: 0;
+}
+
+.letsConnectImageTile {
+    position: relative;
+    overflow: hidden;
+}
+
+.letsConnectEmailTile,
+.letsConnectInfoTile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 26px;
+}
+
+.letsConnectEmailTile {
+    background-color: #c99237;
+}
+
+.letsConnectInfoTile {
+    background-color: #FFF3E0;
+}
+
+.letsConnectAddressTile {
+    background-color: transparent;
+}
+
+.letsConnectEmailValue {
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+@media (min-width: 768px) {
+    .letsConnectLeftGroup,
+    .letsConnectRightGroup {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .letsConnectLeftGroup > div,
+    .letsConnectRightGroup > div {
+        border-right: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    .letsConnectLeftGroup > div:nth-child(2n),
+    .letsConnectRightGroup > div:nth-child(2n) {
+        border-right: 0;
+    }
+
+    .letsConnectLeftGroup > div:nth-last-child(-n + 2),
+    .letsConnectRightGroup > div:nth-last-child(-n + 2) {
+        border-bottom: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .letsConnectDesktopLayout {
+        grid-template-columns: 3fr 2fr;
+        align-items: end;
+    }
+
+    .letsConnectLeftGroup {
+        grid-template-columns: 170px 2.7fr 1.15fr;
+    }
+
+    .letsConnectRightGroup {
+        grid-template-columns: 1.45fr 1.55fr;
+    }
+
+    .letsConnectLeftGroup > div,
+    .letsConnectRightGroup > div {
+        border-right: 1px solid #e6e6e6;
+        border-bottom: 0;
+        min-height: 186px;
+    }
+
+    .letsConnectLeftGroup > div:last-child,
+    .letsConnectRightGroup > div:last-child {
+        border-right: 0;
+    }
+
+    .letsConnectEmailTile,
+    .letsConnectInfoTile {
+        padding: 14px 18px;
+    }
+
+    .letsConnectRightGroup {
+        align-self: end;
+        height: 100%;
+    }
+
+    .letsConnectRightGroup > div {
+        min-height: 100%;
+    }
+}
+
+@media (max-width: 1279px) {
+    .letsConnectEmailValue {
+        font-size: clamp(18px, 1.85vw, 24px);
+        line-height: 1.2;
+    }
+}
+
+@media (max-width: 1023px) {
+    .letsConnectLeftGroup > div,
+    .letsConnectRightGroup > div {
+        min-height: 170px;
+    }
+
+    .letsConnectEmailTile,
+    .letsConnectInfoTile {
+        padding: 20px 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .letsConnectLeftGroup > div,
+    .letsConnectRightGroup > div {
+        min-height: 156px;
+    }
+}
+
+.togetherSection {
+    width: 100%;
+    padding: 8px 16px 48px;
+}
+
+.togetherContainer {
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    border: 1px solid #dedede;
+}
+
+.togetherLeftPanel {
+    background: #ffffff;
+    padding: 34px 18px 30px;
+}
+
+.togetherHeading {
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    line-height: 1.02;
+    color: #111111;
+    letter-spacing: 0.2px;
+}
+
+.togetherHeadingStrong {
+    font-weight: 700;
+}
+
+.togetherHeadingAccent {
+    font-weight: 500;
+    color: #bf9339;
+}
+
+.togetherDescription {
+    margin-top: 18px;
+    max-width: 650px;
+    font-size: 20px;
+    line-height: 1.75;
+    color: #181818;
+}
+
+.togetherOfferingsWrap {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.togetherOfferPill {
+    border: 1px solid #c3a057;
+    border-radius: 999px;
+    padding: 11px 22px;
+    font-size: 13px;
+    line-height: 1;
+    color: #b28e42;
+    white-space: nowrap;
+}
+
+.togetherMiddlePanel {
+    background: #0b1351;
+    padding: 34px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 29px;
+}
+
+.togetherHighlightItem {
+    max-width: 320px;
+}
+
+.togetherHighlightTitle {
+    color: #ffffff;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: 0.2px;
+}
+
+.togetherHighlightText {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 24px;
+    line-height: 1.55;
+}
+
+.togetherImagePanel {
+    position: relative;
+    min-height: 520px;
+}
+
+.togetherImage {
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (min-width: 768px) {
+    .togetherSection {
+        padding: 16px 20px 56px;
+    }
+
+    .togetherContainer {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .togetherLeftPanel {
+        grid-column: 1 / -1;
+        padding: 38px 28px 34px;
+    }
+
+    .togetherHeading {
+        font-size: 56px;
+    }
+
+    .togetherDescription {
+        margin-top: 20px;
+        font-size: 30px;
+    }
+
+    .togetherOfferPill {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+
+    .togetherMiddlePanel {
+        padding: 38px 28px;
+    }
+
+    .togetherHighlightTitle {
+        font-size: 42px;
+    }
+
+    .togetherHighlightText {
+        font-size: 26px;
+    }
+
+    .togetherImagePanel {
+        min-height: 640px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .togetherSection {
+        padding: 22px 32px 70px;
+    }
+
+    .togetherContainer {
+        grid-template-columns: 42.5% 25.5% 32%;
+    }
+
+    .togetherLeftPanel {
+        grid-column: auto;
+        padding: 44px 30px 42px;
+    }
+
+    .togetherHeading {
+        font-size: 56px;
+    }
+
+    .togetherDescription {
+        margin-top: 16px;
+        font-size: 35px;
+        line-height: 1.75;
+    }
+
+    .togetherOfferingsWrap {
+        margin-top: 28px;
+        gap: 10px 10px;
+    }
+
+    .togetherOfferPill {
+        font-size: 12px;
+        padding: 9px 15px;
+    }
+
+    .togetherMiddlePanel {
+        padding: 44px 36px;
+        gap: 35px;
+    }
+
+    .togetherHighlightItem {
+        max-width: 278px;
+    }
+
+    .togetherHighlightTitle {
+        font-size: 33px;
+    }
+
+    .togetherHighlightText {
+        margin-top: 9px;
+        font-size: 32px;
+        line-height: 1.65;
+    }
+
+    .togetherImagePanel {
+        min-height: auto;
+        aspect-ratio: 0.78;
+    }
+}
+
+@media (min-width: 1370px) {
+    .togetherSection {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .togetherLeftPanel {
+        padding: 46px 28px 40px 20px;
+    }
+
+    .togetherMiddlePanel {
+        padding: 46px 34px 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .togetherHeading {
+        font-size: 46px;
+    }
+
+    .togetherDescription {
+        font-size: 24px;
+        line-height: 1.6;
+    }
+
+    .togetherHighlightTitle {
+        font-size: 34px;
+    }
+
+    .togetherHighlightText {
+        font-size: 22px;
+    }
+}
+

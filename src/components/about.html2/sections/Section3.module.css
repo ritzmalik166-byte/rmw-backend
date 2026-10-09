@@ -1,0 +1,136 @@
+/**
+ * About Section3 — linear scale 1024px–1365px only (1366px+ = default Tailwind).
+ * gap-22 treated as 5.5rem (88px) at reference.
+ */
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .root {
+    --s3: clamp(0, calc((100vw - 1024px) / 342px), 1);
+    padding-top: calc(52.525622px + 17.474378px * var(--s3)) !important;
+    padding-bottom: calc(52.525622px + 17.474378px * var(--s3)) !important;
+  }
+
+  .root .container {
+    padding-left: calc(37.518302px + 12.481698px * var(--s3)) !important;
+    padding-right: calc(37.518302px + 12.481698px * var(--s3)) !important;
+    gap: calc(66.032211px + 21.967789px * var(--s3)) !important;
+  }
+
+  .root .leftCol {
+    margin-top: calc(12.005865px + 3.994135px * var(--s3)) !important;
+    gap: calc(6.002933px + 1.997067px * var(--s3)) !important;
+    width: calc(100% - (357.924585px + 119.075415px * var(--s3))) !important;
+  }
+
+  .root .absLine {
+    height: calc(30.014663px + 9.985337px * var(--s3)) !important;
+  }
+
+  .root .titleRow {
+    gap: calc(12.005865px + 3.994135px * var(--s3)) !important;
+    padding-left: calc(3.001466px + 0.998534px * var(--s3)) !important;
+  }
+
+  .root .title {
+    font-size: calc(27.013177px + 8.986823px * var(--s3)) !important;
+  }
+
+  .root .idx {
+    font-size: calc(12.005466px + 3.994534px * var(--s3)) !important;
+    margin-right: calc(12.005865px + 3.994135px * var(--s3)) !important;
+  }
+
+  .root .bodyRow {
+    gap: calc(12.005865px + 3.994135px * var(--s3)) !important;
+    margin-left: calc(27.013177px + 8.986823px * var(--s3)) !important;
+  }
+
+  .root .desc {
+    font-size: calc(12.005466px + 3.994534px * var(--s3)) !important;
+    max-width: calc(480.234261px + 159.765739px * var(--s3)) !important;
+  }
+
+  .root .cta {
+    width: calc(30.014663px + 9.985337px * var(--s3)) !important;
+    height: calc(30.014663px + 9.985337px * var(--s3)) !important;
+  }
+
+  .root .cta svg {
+    width: calc(16.508057px + 5.491943px * var(--s3)) !important;
+    height: calc(15.007331px + 4.992669px * var(--s3)) !important;
+  }
+
+  .root .imgCol {
+    flex-shrink: 0;
+    width: calc(357.924585px + 119.075415px * var(--s3)) !important;
+    max-width: calc(357.924585px + 119.075415px * var(--s3)) !important;
+  }
+}
+
+/**
+ * Tablet only (768px–1023px): proportional scale vs 1366 reference.
+ * Same flex directions, order, and alignment as desktop — no stacking or restructuring.
+ * Does not apply below 768px or at ≥1024px.
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .root .row {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .root .container {
+    gap: calc(88px * (100vw / 1366px)) !important;
+  }
+
+  .root .leftCol {
+    width: calc(100% - (100vw * 477 / 1366)) !important;
+    max-width: calc(100% - (100vw * 477 / 1366)) !important;
+    min-width: 0 !important;
+    margin-top: calc(16px * (100vw / 1366px)) !important;
+    gap: calc(8px * (100vw / 1366px)) !important;
+  }
+
+  .root .absLine {
+    height: calc(40px * (100vw / 1366px)) !important;
+  }
+
+  .root .titleRow {
+    gap: calc(16px * (100vw / 1366px)) !important;
+    padding-left: calc(4px * (100vw / 1366px)) !important;
+  }
+
+  .root .title {
+    font-size: calc(36px * (100vw / 1366px)) !important;
+  }
+
+  .root .idx {
+    font-size: calc(16px * (100vw / 1366px)) !important;
+    margin-right: calc(16px * (100vw / 1366px)) !important;
+  }
+
+  .root .bodyRow {
+    gap: calc(16px * (100vw / 1366px)) !important;
+    margin-left: calc(36px * (100vw / 1366px)) !important;
+  }
+
+  .root .desc {
+    font-size: calc(16px * (100vw / 1366px)) !important;
+    max-width: calc(640px * (100vw / 1366px)) !important;
+  }
+
+  .root .cta {
+    width: calc(40px * (100vw / 1366px)) !important;
+    height: calc(40px * (100vw / 1366px)) !important;
+  }
+
+  .root .cta svg {
+    width: calc(22px * (100vw / 1366px)) !important;
+    height: calc(20px * (100vw / 1366px)) !important;
+  }
+
+  .root .imgCol {
+    width: calc(100vw * 477 / 1366) !important;
+    max-width: calc(100vw * 477 / 1366) !important;
+    min-width: 0 !important;
+  }
+}

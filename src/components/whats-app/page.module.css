@@ -1,0 +1,69 @@
+/* styles/page.module.css */
+
+.whatsappButtonWrapper {
+    position: fixed;
+    bottom: 15px;
+    left: 20px;
+    z-index: 9999;
+    animation: btnAnime 1.8s infinite ease-in 1s;
+}
+
+.whatsappButton {
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsappButton:hover {
+    background-color: #1ebe5b;
+}
+
+.holaText {
+    font-size: 50px;
+    text-align: center;
+    padding: 40px;
+}
+
+@media (max-width: 480px) {
+    .whatsappButtonWrapper {
+        position: fixed;
+        bottom: 140px;
+        left: 20px;
+        z-index: 9999;
+    }
+
+    .whatsappButton {
+        width: 50px;
+        height: 50px;
+    }
+
+    .whatsappButton svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@keyframes btnAnime {
+    0% {
+        bottom: 40px;
+        left: 20px;
+    }
+
+    50% {
+        bottom: 30px;
+        left: 20px;
+    }
+
+    100% {
+        bottom: 40px;
+        left: 20px;
+    }
+}

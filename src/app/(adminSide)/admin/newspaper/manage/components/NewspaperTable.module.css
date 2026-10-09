@@ -1,0 +1,224 @@
+.tableContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thead {
+  background-color: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.th {
+  padding: 1rem;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.tbody {
+  background: white;
+}
+
+.tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.tr:hover {
+  background-color: #f9fafb;
+}
+
+.tr:last-child {
+  border-bottom: none;
+}
+
+.td {
+  padding: 1rem;
+  font-size: 14px;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.logoPlaceholder {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  border-radius: 6px;
+  font-size: 24px;
+}
+
+.paperInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.paperName {
+  font-weight: 600;
+  color: #111827;
+}
+
+.category {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: #fbf7ee;
+  color: #c59d4f;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.locationSub {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.priceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.price {
+  font-weight: 600;
+  color: #111827;
+}
+
+.spendType {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.positionBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.positionMain {
+  background-color: #d1fae5;
+  color: #10b981;
+}
+
+.positionSupplement {
+  background-color: #fef3c7;
+  color: #f59e0b;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.editBtn,
+.deleteBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.editBtn {
+  background-color: #fbf7ee;
+  color: #c59d4f;
+}
+
+.editBtn:hover {
+  background-color: #f3e9d2;
+  transform: translateY(-2px);
+}
+
+.deleteBtn {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+.deleteBtn:hover {
+  background-color: #fecaca;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1200px) {
+  .th,
+  .td {
+    padding: 0.75rem 0.5rem;
+    font-size: 13px;
+  }
+
+  .logo,
+  .logoPlaceholder {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tableWrapper {
+    overflow-x: scroll;
+  }
+
+  .table {
+    min-width: 1000px;
+  }
+
+  .th,
+  .td {
+    padding: 0.5rem;
+    font-size: 12px;
+  }
+}
+
+

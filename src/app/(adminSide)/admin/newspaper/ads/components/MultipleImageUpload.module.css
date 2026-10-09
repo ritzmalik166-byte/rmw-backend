@@ -1,0 +1,142 @@
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 4px;
+}
+
+.uploadContainer {
+  position: relative;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadArea {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #f9fafb;
+  margin-bottom: 1rem;
+}
+
+.uploadArea:hover {
+  border-color: #c59d4f;
+  background-color: #fbf7ee;
+}
+
+.uploadAreaError {
+  border-color: #ef4444;
+}
+
+.uploadIcon {
+  font-size: 48px;
+  margin-bottom: 0.5rem;
+}
+
+.uploadText {
+  margin: 0 0 0.25rem 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.uploadSubtext {
+  margin: 0 0 0.5rem 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.uploadCount {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c59d4f;
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.previewItem {
+  position: relative;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.previewImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.removeButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.removeButton:hover {
+  background-color: #dc2626;
+  transform: scale(1.1);
+}
+
+.fileName {
+  padding: 0.5rem;
+  font-size: 11px;
+  color: #6b7280;
+  background-color: #f9fafb;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.errorMessage {
+  display: block;
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .previewGrid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .previewImage {
+    height: 120px;
+  }
+}
+
+

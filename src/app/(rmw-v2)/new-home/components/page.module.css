@@ -1,0 +1,66 @@
+.sbAnime {
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding-left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.sbAnime:hover {
+    width: 200px;
+    padding-left: 20px;
+}
+
+.socialName {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s, width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s;
+}
+
+.sbAnime:hover .socialName {
+    opacity: 1;
+    width: auto;
+    /* background-color: #ED8B24; */
+    transition:
+        opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s,
+        width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s,
+        background-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animatedBtn {
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        background-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-radius 0s linear,
+        padding-left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        padding-right 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+}
+
+.animatedBtn:hover {
+    width: 300px;
+    background-color: #ED8B24 !important;
+    border-radius: 8px !important;
+    padding-left: 16px;
+    padding-right: 24px;
+}
+
+.animatedBtnIcn {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animatedBtn:hover .animatedBtnIcn {
+    transform: rotate(28deg);
+}
+
+.animatedBtnText {
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s,
+        max-width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s,
+        margin-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+}
+
+.animatedBtn:hover .animatedBtnText {
+    opacity: 1;
+    max-width: 200px;
+    margin-left: 12px;
+}

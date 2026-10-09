@@ -1,0 +1,31 @@
+/* Swiper Pagination Lines */
+.testimonialSwiper .swiper-pagination {
+  position: relative;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.testimonialSwiper .swiper-pagination-bullet {
+  width: 40px;
+  height: 3px;
+  border-radius: 0;
+  background-color: #BFBFBF;
+  opacity: 1;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.testimonialSwiper .swiper-pagination-bullet-active {
+  background-color: #000000;
+  width: 60px;
+}
+
+/* Ensure slide cards maintain exact dimensions */
+.testimonialSwiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

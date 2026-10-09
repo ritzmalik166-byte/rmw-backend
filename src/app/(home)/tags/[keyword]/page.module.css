@@ -1,0 +1,166 @@
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.gridOuter {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items:center;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+
+@media (max-width: 900px) {
+  .container {
+    padding: 10px;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .grid {
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 4px;
+  }
+
+  .heading {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .cardContent {
+    padding: 0.7rem;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .cardDesc {
+    font-size: 0.95rem;
+  }
+
+  .readMoreBtn {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: 100%; */
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  padding-bottom: 1rem;
+  max-width: 400px;
+  /* Add spacing at bottom for footer */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.cardImageWrap {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cardImage:hover {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex-grow: 1;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+}
+
+.cardDesc {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  margin-top: auto;
+  margin-bottom: 0.5rem;
+}
+
+.cardDate {
+  font-size: 0.8rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.shareBtn {
+  background: transparent;
+  border: 1px solid #E5B05C;
+  color: #E5B05C;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shareBtn:hover {
+  background-color: #fff8eb;
+}

@@ -1,0 +1,61 @@
+/* Logo strip - clips logos at top/bottom with overflow, creates band effect */
+.logoStrip {
+  position: relative;
+  overflow: hidden;
+  height: 52px;
+}
+
+@media (min-width: 640px) {
+  .logoStrip {
+    height: 62px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logoStrip {
+    height: 72px;
+  }
+}
+
+/* Gradient mask at top and bottom for soft boundary cover */
+.logoStrip::before,
+.logoStrip::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.logoStrip::before {
+  top: 0;
+  background: linear-gradient(to bottom, #ffffff 40%, transparent 100%);
+}
+
+.logoStrip::after {
+  bottom: 0;
+  background: linear-gradient(to top, #ffffff 40%, transparent 100%);
+}
+
+.clientSlider {
+  animation: clientSlider 30s linear infinite;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+}
+
+.clientSlider:hover {
+  animation-play-state: paused;
+}
+
+@keyframes clientSlider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+  

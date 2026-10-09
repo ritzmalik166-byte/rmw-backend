@@ -1,0 +1,52 @@
+.dashMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 30px;
+    padding-left: 130px;
+}
+
+.dashContent{
+    width: 40%;
+}
+
+.dashWrites{
+    background-color: #f3f4f6;
+    border-radius: 16px;
+    padding: 30px 40px;
+    height: 500px;
+    width: 40%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dashButtons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.dashButtons button:first-child{
+    background-color: black;
+    color: white;
+}
+
+.dashButtons button{
+    border: 1px solid black;
+    width: 200px;
+    border-radius: 30px;
+    padding: 16px;
+}
+
+.dashWrites h1{
+    font-size: 28px;
+}
+
+.dashWrites p{
+    font-size: 17px;
+}

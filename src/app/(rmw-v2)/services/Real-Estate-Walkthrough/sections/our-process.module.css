@@ -1,0 +1,625 @@
+/* Design canvas: 1300 × 680px + ~100px badge overflow = 780px tall */
+.section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #0a1128;
+}
+
+.bgWrap {
+  position: absolute;
+  inset: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+@media (min-width: 1024px) {
+  .bgWrap {
+    bottom: 100px;
+  }
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 17, 40, 0.3) 0%,
+    rgba(10, 17, 40, 0.5) 50%,
+    rgba(10, 17, 40, 0.78) 100%
+  );
+}
+
+.whiteBar {
+  position: relative;
+  z-index: 1;
+  height: 48px;
+  background: #fff;
+}
+
+@media (min-width: 640px) {
+  .whiteBar {
+    height: 72px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .whiteBar {
+    display: block;
+    height: 100px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .whiteBar {
+    display: none;
+  }
+}
+
+.contentWrap {
+  position: relative;
+  z-index: 2;
+  padding-top: clamp(1.75rem, 4vw, 3.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+@media (min-width: 1024px) {
+  .contentWrap {
+    padding-top: 3.5rem;
+    padding-bottom: 0;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Mobile & tablet (< 1024px) ── */
+.mobileWrap {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+}
+
+@media (min-width: 1024px) {
+  .mobileWrap {
+    display: none;
+  }
+}
+
+.mobileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.mobileBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(120px, 28vw, 160px);
+  height: clamp(120px, 28vw, 160px);
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(202, 202, 202, 0.25);
+  border: 1px solid rgba(201, 146, 55, 0.25);
+}
+
+.mobileBadgeLine1,
+.mobileBadgeLine2 {
+  font-family: MontserratSemiBold, Montserrat, sans-serif;
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.mobileHeading {
+  margin: 0 0 0.75rem;
+  max-width: 22ch;
+  font-family: MontserratSemiBold, Montserrat, sans-serif;
+  font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.mobileDescription {
+  margin: 0;
+  max-width: 42rem;
+  font-family: OpenSansRegular, "Open Sans", sans-serif;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.mobileSteps {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mobileStep {
+  display: flex;
+  gap: clamp(0.75rem, 2.5vw, 1.25rem);
+  align-items: flex-start;
+}
+
+.mobileStepNum {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: clamp(36px, 9vw, 44px);
+  height: clamp(36px, 9vw, 44px);
+  border-radius: 50%;
+  background: #c99237;
+  font-family: MontserratSemiBold, Montserrat, sans-serif;
+  font-size: clamp(13px, 3vw, 15px);
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(201, 146, 55, 0.35);
+}
+
+.mobileStepBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.mobileStepTitle {
+  margin: 0 0 0.5rem;
+  font-family: MontserratSemiBold, Montserrat, sans-serif;
+  font-size: clamp(0.9375rem, 2.8vw, 1.0625rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: #fff;
+}
+
+.mobileStepDesc {
+  margin: 0;
+  font-family: OpenSansRegular, "Open Sans", sans-serif;
+  font-size: clamp(0.8125rem, 2.4vw, 0.9375rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mobileSteps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+  }
+
+  .mobileStep:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── Desktop (≥ 1024px): mockup scales via container queries ── */
+.inner {
+  container-type: inline-size;
+  container-name: process;
+  display: none;
+  width: 100%;
+  max-width: 1300px;
+  margin-inline: auto;
+  padding-inline: 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    display: block;
+  }
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  /* 780 / 1300 aspect — room for badge below 680px canvas */
+  height: calc(780 / 1300 * 100cqw);
+  min-height: 580px;
+  max-height: 780px;
+  overflow: visible;
+}
+
+.stageCanvas {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1300px;
+  height: 680px;
+  margin-left: -650px;
+  transform: scale(calc(100cqw / 1300px));
+  transform-origin: top center;
+}
+
+@container process (min-width: 1300px) {
+  .stage {
+    height: 780px;
+    max-height: none;
+  }
+
+  .stageCanvas {
+    transform: none;
+  }
+}
+
+.desktopSteps {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.connectors {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.connectorLine {
+  fill: none;
+  stroke: #c99237;
+  stroke-width: 1.5;
+}
+
+.stageCanvas {
+  top: 10%!important;
+}
+/* .our-process_stepLeftMiddle__xdBtv {
+  left: 10% !important;
+  top: 85% !important;
+  align-items: center !important;
+} */
+/* ── Steps (original mockup coordinates) ── */
+.step {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 300px;
+}
+
+.stepRightAlign {
+  flex-direction: row;
+}
+
+.stepLeftAlign {
+  flex-direction: row;
+}
+
+.stepCenterAlign {
+  flex-direction: column;
+  align-items: center;
+  max-width: 340px;
+  gap: 10px;
+}
+
+.stepRightAlign .stepContent {
+  text-align: right;
+}
+
+.stepLeftAlign .stepContent {
+  text-align: left;
+}
+
+.stepCenterAlign .stepContent {
+  text-align: center;
+}
+
+.stepTop {
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+}
+
+.stepTop .stepNum {
+  transform: translateY(205px);
+}
+
+.stepTop .stepContent {
+  transform: translateY(35px);
+}
+
+.stepTopLeft {
+  left: 30px;
+  top: 220px;
+}
+
+.stepTopLeft .stepNum {
+  transform: translateY(113px) translateX(45px);
+}
+
+.stepTopLeft .stepContent {
+  transform: translateY(50px) translateX(40px);
+}
+
+.stepTopRight {
+  right: 30px;
+  top: 220px;
+}
+
+.stepTopRight .stepNum {
+  transform: translateY(103px) translateX(-45px);
+}
+
+.stepTopRight .stepContent {
+  transform: translateY(40px) translateX(-40px);
+}
+
+.stepLeftMiddle {
+  left: -4px;
+  top: 490px;
+  align-items: center;
+}
+
+.stepLeftMiddle .stepNum {
+  transform: translateY(-60px);
+}
+
+.stepRightMiddle {
+  right: 10px;
+  top: 490px;
+  align-items: center;
+}
+
+.stepRightMiddle .stepNum {
+  transform: translateY(-60px);
+}
+
+.stepNum {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #c99237;
+  font-family: MontserratSemiBold, Montserrat, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(201, 146, 55, 0.35);
+  z-index: 4;
+}
+
+/* Gold line from number box → hub (moves with box) */
+.stepLine {
+  position: absolute;
+  background: #c99237;
+  pointer-events: none;
+}
+
+.lineToHubRight {
+  left: calc(100% - 1px);
+  top: 50%;
+  width: 106px;
+  height: 1.5px;
+  transform: translateY(-50%);
+}
+
+.lineToHubLeft {
+  right: calc(100% - 1px);
+  top: 50%;
+  width: 106px;
+  height: 1.5px;
+  transform: translateY(-50%);
+}
+
+.lineToHubDown {
+  left: 50%;
+  top: calc(100% - 1px);
+  width: 1.5px;
+  height: 101px;
+  transform: translateX(-50%);
+}
+
+/* 02 & 04 — angled toward hub */
+.stepTopLeft .stepLine {
+  left: calc(100% - 2px);
+  top: calc(100% - 2px);
+  width: 128px;
+  height: 1.5px;
+  transform: rotate(32deg);
+  transform-origin: left center;
+}
+
+.stepTopRight .stepLine {
+  right: calc(100% - 2px);
+  top: calc(100% - 2px);
+  width: 128px;
+  height: 1.5px;
+  transform: rotate(-32deg);
+  transform-origin: right center;
+}
+
+.stepContent {
+  min-width: 0;
+}
+
+.stepTitle {
+  margin: 0 0 0.45rem;
+  font-family: MontserratSemiBold, Montserrat, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #fff;
+}
+
+.stepDesc {
+  margin: 0;
+  font-family: OpenSansRegular, "Open Sans", sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+}
+.connectors {
+  top: 2%!important;
+}
+.stepRightMiddle{
+  right: -1%!important;
+}
+.stepTopLeft{
+  top:34%!important;
+ 
+}
+.stepTopRight{
+  top:34%!important;
+ 
+}
+
+
+/* ── Central hub ── */
+.hubWrap {
+  position: absolute;
+  left: 50%;
+  bottom: -8.2%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 410px;
+  transform: translateX(-50%);
+}
+
+.hubClip {
+  width: 410px;
+  height: 330px;
+  overflow: hidden;
+}
+
+.hubCircle {
+  position: relative;
+  width: 410px;
+  height: 410px;
+  background: #f8f8f8;
+  border-radius: 50%;
+}
+
+.hubCircle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 8px solid #c99237;
+  border-radius: 50%;
+  pointer-events: none;
+  clip-path: inset(0 0 170px 0);
+}
+
+.hubText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.75rem 2rem 2.25rem;
+  text-align: center;
+}
+
+.heading {
+  margin: 0 0 0.65rem;
+  font-family: MontserratSemiBold, Montserrat, sans-serif;
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #0a1128;
+  transform: translateY(-80px);
+}
+
+.description {
+  margin: 0 auto;
+  max-width: 300px;
+  font-family: OpenSansRegular, "Open Sans", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #333;
+  transform: translateY(-70px);
+}
+
+.badge {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
+  margin-top: -150px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(202, 202, 202, 0.25);
+  border: 1px solid rgba(201, 146, 55, 0.25);
+  white-space: nowrap;
+  transform: translateY(69px);
+}
+
+.badgeLine1,
+.badgeLine2 {
+  font-family: MontserratSemiBold, Montserrat, sans-serif;
+  font-size: 31px;
+  font-weight: 600;
+  line-height: 38px;
+  color: #111111;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@container process (min-width: 1280px) {
+  .step {
+    max-width: 351px;
+  }
+
+  .stepTitle {
+    font-size: 16px;
+  }
+
+  .stepDesc {
+    font-size: 14px;
+  }
+}
+
+/* Fallback when container queries unsupported */
+@supports not (container-type: inline-size) {
+  @media (min-width: 1024px) {
+    .stage {
+      height: clamp(580px, 60vw, 780px);
+    }
+
+    .stageCanvas {
+      transform: scale(clamp(0.75, 100vw / 1300, 1));
+    }
+  }
+}
