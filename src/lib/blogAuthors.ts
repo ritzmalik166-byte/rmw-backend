@@ -1,6 +1,5 @@
 /** Preset blog authors for admin posting (Ritz Media World). */
 export const BLOG_AUTHORS = [
-  "Akansha Verma",
   "Shorye Verma",
   "Manav Raj Chopra",
   "Khubeb (Ayan)",
