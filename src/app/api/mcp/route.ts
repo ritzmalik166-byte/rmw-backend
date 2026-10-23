@@ -30,12 +30,10 @@ const authenticatedHandler = withMcpAuth(
 );
 
 async function handler(req: Request) {
-  console.log("mcp request", req);
   if (!isMcpSecretConfigured()) {
     console.error(
       "[rmw-connector] RMW_MCP_SECRET is missing or too short (min 32 chars)"
     );
-    console.error("mcp request", req);
     return Response.json(
       {
         error: "unavailable",

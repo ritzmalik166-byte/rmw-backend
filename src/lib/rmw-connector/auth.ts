@@ -1,10 +1,7 @@
 import { createHash, timingSafeEqual } from "crypto";
 import type { AuthInfo } from "@modelcontextprotocol/server";
 
-/**
- * TEMPORARY shared-secret auth for MCP testing (Authorization: Bearer <RMW_MCP_SECRET>).
- * Replace `verifyMcpBearerToken` with an OAuth access-token verifier for production.
- */
+
 
 const MIN_SECRET_LENGTH = 32;
 
@@ -32,19 +29,24 @@ export function getBearerToken(req: Request): string | undefined {
 }
 
 export function verifyMcpBearerToken(
-  _req: Request,
+  req: Request,
   bearerToken?: string
 ): AuthInfo | undefined {
   const secret = getMcpSecret();
-  if (!secret || !bearerToken || !secretsMatch(bearerToken, secret)) {
-    console.error("MCP secret does not match", secret, bearerToken);
+
+  const authorization = req.headers.get("Authorization");
+  const headerToken = authorization?.match(/^Bearer\s+(.+)$/i)?.[1]
+    ?? authorization;
+
+  const token = bearerToken ?? headerToken?.trim();
+
+  if (!secret || !token || !secretsMatch(token, secret)) {
+    console.error("[rmw-connector] MCP authentication failed");
     return undefined;
   }
 
-  console.log("MCP secret matches", secret, bearerToken);
-
   return {
-    token: bearerToken,
+    token,
     clientId: "rmw-mcp-shared-secret",
     scopes: ["rmw:blogs:read", "rmw:blogs:draft"],
   };
