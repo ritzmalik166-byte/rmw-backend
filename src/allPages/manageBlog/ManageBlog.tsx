@@ -23,6 +23,7 @@ import {
   Search,
   Trash2,
   X,
+  Loader2,
   type LucideIcon,
 } from "lucide-react";
 import {
@@ -136,11 +137,46 @@ const STATUS_CARDS: {
   accent: string;
   tint: string;
 }[] = [
-  { key: "all", label: "All blogs", hint: "CMS + legacy archive", icon: Layers, accent: "#0B1623", tint: "rgba(11,22,35,0.07)" },
-  { key: "published", label: "Published", hint: "Live on the website", icon: CircleCheck, accent: "#059669", tint: "rgba(16,185,129,0.12)" },
-  { key: "scheduled", label: "Scheduled", hint: "Queued to go live", icon: CalendarClock, accent: "#D97706", tint: "rgba(245,158,11,0.14)" },
-  { key: "draft", label: "Drafts", hint: "Work in progress", icon: PencilLine, accent: "#475569", tint: "rgba(100,116,139,0.14)" },
-  { key: "inactive", label: "Inactive", hint: "Hidden from readers", icon: EyeOff, accent: "#DC2626", tint: "rgba(239,68,68,0.1)" },
+  {
+    key: "all",
+    label: "All blogs",
+    hint: "CMS + legacy archive",
+    icon: Layers,
+    accent: "#0B1623",
+    tint: "rgba(11,22,35,0.07)",
+  },
+  {
+    key: "published",
+    label: "Published",
+    hint: "Live on the website",
+    icon: CircleCheck,
+    accent: "#059669",
+    tint: "rgba(16,185,129,0.12)",
+  },
+  {
+    key: "scheduled",
+    label: "Scheduled",
+    hint: "Queued to go live",
+    icon: CalendarClock,
+    accent: "#D97706",
+    tint: "rgba(245,158,11,0.14)",
+  },
+  {
+    key: "draft",
+    label: "Drafts",
+    hint: "Work in progress",
+    icon: PencilLine,
+    accent: "#475569",
+    tint: "rgba(100,116,139,0.14)",
+  },
+  {
+    key: "inactive",
+    label: "Inactive",
+    hint: "Hidden from readers",
+    icon: EyeOff,
+    accent: "#DC2626",
+    tint: "rgba(239,68,68,0.1)",
+  },
 ];
 
 const EMPTY_MESSAGES: Record<StatusFilter, string> = {
@@ -224,10 +260,11 @@ export default function ManageBlogs() {
   const [popupData, setPopupData] = useState({ message: "", status: 0 });
   const [lastSyncedAt, setLastSyncedAt] = useState<Date | null>(null);
   // const [blogForSearch, setBlogForSearch] = useState<MERGEDBLOGS[]>([]);
+  const [loadingBlogId, setLoadingBlogId] = useState<string | null>(null);
 
   function mergedALLBLOGS(
     blog: (Blog | SQLBLOGS)[],
-    mysqlCategoryNames: Record<string, string> = {}
+    mysqlCategoryNames: Record<string, string> = {},
   ): MERGEDBLOGS[] {
     return blog.map((blg) => {
       if (isMongoBlog(blg)) {
@@ -303,7 +340,7 @@ export default function ManageBlogs() {
         (blog) =>
           blog.title.toLowerCase().includes(searchedBl.toLowerCase()) ||
           (!!blog.categoryName &&
-            normalizeCategorySearch(blog.categoryName).includes(categoryQuery))
+            normalizeCategorySearch(blog.categoryName).includes(categoryQuery)),
       );
     }
     return list;
@@ -313,10 +350,13 @@ export default function ManageBlogs() {
   const loadBlogs = async (showSuccessPopup = false) => {
     setLoading(true);
     try {
-      const { data, status } = await axios.get(`/api/ritz_blogs/get-all-blogs`, {
-        headers: managementAuthHeaders(),
-        params: { _: Date.now() },
-      });
+      const { data, status } = await axios.get(
+        `/api/ritz_blogs/get-all-blogs`,
+        {
+          headers: managementAuthHeaders(),
+          params: { _: Date.now() },
+        },
+      );
       // /api/all_blogs excludes Case Studies (category_id 1) for the public site; admin needs every MySQL blog
       const [res2, mysqlCategoryNames] = await Promise.all([
         axios.get("/api/all_mysql_blogs", {
@@ -333,7 +373,10 @@ export default function ManageBlogs() {
       }
 
       if (Array.isArray(res2?.data)) {
-        combined = [...combined, ...mergedALLBLOGS(res2.data, mysqlCategoryNames)];
+        combined = [
+          ...combined,
+          ...mergedALLBLOGS(res2.data, mysqlCategoryNames),
+        ];
       }
 
       combined.sort((a, b) => (b.createdTime ?? 0) - (a.createdTime ?? 0));
@@ -352,7 +395,7 @@ export default function ManageBlogs() {
           message: (error as { message: string }).message,
           status:
             error instanceof Error && "status" in error
-              ? (error as { status?: number }).status ?? 500
+              ? ((error as { status?: number }).status ?? 500)
               : 500,
         });
       } else {
@@ -401,7 +444,7 @@ export default function ManageBlogs() {
           message: (error as { message: string }).message,
           status:
             error instanceof Error && "status" in error
-              ? (error as { status?: number }).status ?? 500
+              ? ((error as { status?: number }).status ?? 500)
               : 500,
         });
       } else {
@@ -424,7 +467,7 @@ export default function ManageBlogs() {
       } else {
         const { data, status } = await axios.delete(
           `/api/ritz_blogs/delete-blog/${deleteKey}`,
-          { headers: managementAuthHeaders() }
+          { headers: managementAuthHeaders() },
         );
         setPopupData({ message: data.message, status });
         setShowPopup(true);
@@ -454,7 +497,7 @@ export default function ManageBlogs() {
             message: (error as { message: string }).message,
             status:
               error instanceof Error && "status" in error
-                ? (error as { status?: number }).status ?? 500
+                ? ((error as { status?: number }).status ?? 500)
                 : 500,
           });
         } else {
@@ -466,7 +509,7 @@ export default function ManageBlogs() {
       // console.log("====================================");
       console.log(
         "There are some errors in your delete blog now controller plz fix the bug first ",
-        error
+        error,
       );
       // console.log("====================================");
     }
@@ -520,7 +563,9 @@ export default function ManageBlogs() {
     if (newLeft >= filteredLength) return;
 
     let newRight = Math.min(newLeft + 9, filteredLength);
-    setActivePage((prev) => (prev < Math.ceil(filteredLength / 9) ? prev + 1 : prev));
+    setActivePage((prev) =>
+      prev < Math.ceil(filteredLength / 9) ? prev + 1 : prev,
+    );
     setLftBtn(newLeft);
     setRightBtn(newRight);
   };
@@ -548,7 +593,7 @@ export default function ManageBlogs() {
   const handleActiveBtnToggle = async (
     blStatus: string,
     dbSt: string,
-    blID: string
+    blID: string,
   ) => {
     try {
       let res;
@@ -576,7 +621,7 @@ export default function ManageBlogs() {
           message: (error as { message: string }).message,
           status:
             error instanceof Error && "status" in error
-              ? (error as { status?: number }).status ?? 500
+              ? ((error as { status?: number }).status ?? 500)
               : 500,
         });
       } else {
@@ -627,7 +672,7 @@ export default function ManageBlogs() {
       // Fetch All The MongoDb Blogs ::
       try {
         const { data } = await axios.get<{ allBlogs: MONGOEXCELBLOG[] }>(
-          "/api/ritz_blogs/get-all-blogs"
+          "/api/ritz_blogs/get-all-blogs",
         );
         if (data && data.allBlogs && data.allBlogs.length > 0) {
           mongoBlogs = data.allBlogs.map((ob: MONGOEXCELBLOG) => {
@@ -641,7 +686,8 @@ export default function ManageBlogs() {
       } catch (error) {
         console.error("Error in fetching MongoDB blogs:", error);
         setPopupData({
-          message: "Failed to fetch MongoDB blogs. Continuing with available data...",
+          message:
+            "Failed to fetch MongoDB blogs. Continuing with available data...",
           status: 500,
         });
         setShowPopup(true);
@@ -668,7 +714,8 @@ export default function ManageBlogs() {
       } catch (error) {
         console.error("Error in fetching MySQL blogs:", error);
         setPopupData({
-          message: "Failed to fetch MySQL blogs. Continuing with available data...",
+          message:
+            "Failed to fetch MySQL blogs. Continuing with available data...",
           status: 500,
         });
         setShowPopup(true);
@@ -685,15 +732,15 @@ export default function ManageBlogs() {
           mapMongoBlogToExportRow(
             blog as MongoBlogExportSource,
             stripHTML,
-            mongoCategoryNames
-          )
+            mongoCategoryNames,
+          ),
         ),
         ...(sqlBlogs || []).map((blog) =>
           mapMysqlBlogToExportRow(
             blog as MysqlBlogExportSource,
             stripHTML,
-            mysqlCategoryNames
-          )
+            mysqlCategoryNames,
+          ),
         ),
       ];
 
@@ -724,7 +771,7 @@ export default function ManageBlogs() {
             : "An error occurred during backup process.",
         status:
           error instanceof Error && "status" in error
-            ? (error as { status?: number }).status ?? 500
+            ? ((error as { status?: number }).status ?? 500)
             : 500,
       });
       setShowPopup(true);
@@ -762,7 +809,7 @@ export default function ManageBlogs() {
       ? handleActiveBtnToggle(
           blog.blogStatus,
           "mongo",
-          blog.mongoID ? blog.mongoID : blog.blogID
+          blog.mongoID ? blog.mongoID : blog.blogID,
         )
       : handleActiveBtnToggle(blog.blogStatus, "mysql", blog.blogID);
 
@@ -821,7 +868,9 @@ export default function ManageBlogs() {
       >
         <span
           className={`relative inline-flex h-[18px] w-8 items-center rounded-full transition-colors duration-200 ${
-            isActive ? "bg-emerald-500" : "bg-slate-300 group-hover/switch:bg-slate-400"
+            isActive
+              ? "bg-emerald-500"
+              : "bg-slate-300 group-hover/switch:bg-slate-400"
           }`}
         >
           <span
@@ -852,7 +901,10 @@ export default function ManageBlogs() {
         {deleteConfirmModal && (
           <motion.div
             className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-            style={{ background: "rgba(11,22,35,0.55)", backdropFilter: "blur(8px)" }}
+            style={{
+              background: "rgba(11,22,35,0.55)",
+              backdropFilter: "blur(8px)",
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -950,7 +1002,9 @@ export default function ManageBlogs() {
               title="Refresh blogs"
               className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-wait"
             >
-              <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+              <RefreshCw
+                className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}
+              />
             </button>
             <button
               type="button"
@@ -959,7 +1013,9 @@ export default function ManageBlogs() {
               className="inline-flex h-10 cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-[#0B1623] transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-70"
             >
               <Download className="h-4 w-4 text-slate-500" />
-              {backupLoading ? `Backing up… ${backupProgress.percent}%` : "Get Backup"}
+              {backupLoading
+                ? `Backing up… ${backupProgress.percent}%`
+                : "Get Backup"}
             </button>
             <Link
               title="Add New Blog"
@@ -993,7 +1049,8 @@ export default function ManageBlogs() {
         {STATUS_CARDS.map((card) => {
           const count = countByLabel(mergedBlogs, card.key);
           const isActive = statusFilter === card.key;
-          const share = totalCount > 0 ? Math.round((count / totalCount) * 100) : 0;
+          const share =
+            totalCount > 0 ? Math.round((count / totalCount) * 100) : 0;
           const Icon = card.icon;
           return (
             <button
@@ -1029,7 +1086,9 @@ export default function ManageBlogs() {
               </div>
               <div className="mt-4 flex items-center justify-between text-[11.5px] text-slate-500">
                 <span>{card.hint}</span>
-                {card.key !== "all" && <span className="tabular-nums">{share}%</span>}
+                {card.key !== "all" && (
+                  <span className="tabular-nums">{share}%</span>
+                )}
               </div>
               <div className="mt-2 h-1 overflow-hidden rounded-full bg-slate-100">
                 <div
@@ -1104,7 +1163,9 @@ export default function ManageBlogs() {
                 <option value="50">50</option>
                 <option value="100">100</option>
                 {mergedBlogs.length > 0 && (
-                  <option value={mergedBlogs && Math.ceil(mergedBlogs.length / 2)}>
+                  <option
+                    value={mergedBlogs && Math.ceil(mergedBlogs.length / 2)}
+                  >
                     {mergedBlogs && Math.ceil(mergedBlogs.length / 2)}
                   </option>
                 )}
@@ -1144,7 +1205,9 @@ export default function ManageBlogs() {
               <FileText className="h-6 w-6 text-slate-300" />
             </div>
             <p className="mt-4 text-sm font-semibold text-[#0B1623]">
-              {hasSearch ? `No results for “${searchedBl.trim()}”` : EMPTY_MESSAGES[statusFilter]}
+              {hasSearch
+                ? `No results for “${searchedBl.trim()}”`
+                : EMPTY_MESSAGES[statusFilter]}
             </p>
             <p className="mt-1 text-sm text-slate-500">
               {hasSearch
@@ -1176,36 +1239,43 @@ export default function ManageBlogs() {
         ) : (
           <>
             {/* Desktop rows */}
-            <div className="hidden divide-y divide-slate-100 md:block">
+            <div className="hidden divide-y divide-slate-100/80 md:block">
               {page.map((blog) => (
                 <div
                   key={`${blog.mongoID ? "mongo" : "mysql"}-${blog.blogID}`}
-                  className={`group grid ${LIST_GRID_COLUMNS} items-center gap-4 px-5 py-3.5 transition-colors duration-150 hover:bg-slate-50/70`}
+                  className={`group grid ${LIST_GRID_COLUMNS} items-center gap-5 px-6 py-5 transition-colors duration-200 hover:bg-slate-50/80`}
                 >
+                  {/* Blog details */}
                   <div className="flex min-w-0 items-center gap-4">
-                    {renderThumb(blog, "sm")}
-                    <div className="min-w-0">
+                    <div className="shrink-0 overflow-hidden rounded-xl ring-1 ring-slate-200/80 transition-all duration-200 group-hover:ring-[#C59D4F]/40">
+                      {renderThumb(blog, "sm")}
+                    </div>
+
+                    <div className="min-w-0 flex-1">
                       <Link
                         href={editHref(blog)}
                         title={blog.title}
-                        className="line-clamp-2 text-[14px] font-semibold leading-snug text-[#0B1623] transition-colors hover:text-[#9A7530]"
+                        className="line-clamp-2 text-sm font-semibold leading-5 text-[#0B1623] transition-colors duration-200 hover:text-[#9A7530]"
                       >
                         {blog.title}
                       </Link>
-                      <div className="mt-1.5 flex min-w-0 flex-wrap items-center gap-1.5">
-                        <span className="max-w-[260px] truncate font-mono text-[11px] text-slate-400">
+
+                      <div className="mt-2 flex min-w-0 flex-wrap items-center gap-2">
+                        <span className="max-w-[200px] truncate font-mono text-[11px] text-slate-400">
                           /{blog.blogID}
                         </span>
+
                         {blog.categoryName && (
-                          <span className="rounded-md bg-[#2955B3]/[0.07] px-1.5 py-0.5 text-[10.5px] font-semibold text-[#2955B3]">
+                          <span className="max-w-[150px] truncate rounded-md border border-[#2955B3]/10 bg-[#2955B3]/[0.06] px-2 py-1 text-[10px] font-semibold text-[#2955B3]">
                             {blog.categoryName}
                           </span>
                         )}
+
                         <span
-                          className={`rounded-md px-1.5 py-0.5 text-[10.5px] font-semibold ${
+                          className={`rounded-md px-2 py-1 text-[10px] font-semibold ${
                             blog.mongoID
-                              ? "bg-[#C59D4F]/10 text-[#9A7530]"
-                              : "bg-slate-100 text-slate-500"
+                              ? "border border-[#C59D4F]/20 bg-[#C59D4F]/10 text-[#9A7530]"
+                              : "border border-slate-200 bg-slate-100 text-slate-500"
                           }`}
                         >
                           {blog.mongoID ? "CMS" : "Legacy"}
@@ -1214,53 +1284,134 @@ export default function ManageBlogs() {
                     </div>
                   </div>
 
-                  <div className="text-[12.5px] text-slate-600">
-                    <div className="font-medium">{blog.createdAT}</div>
+                  {/* Dates */}
+                  <div className="min-w-0 space-y-1.5 text-xs text-slate-500">
+                    <div className="font-medium leading-5 text-slate-700">
+                      {blog.createdAT}
+                    </div>
+
                     {blog.scheduledAtLabel && (
-                      <div className="mt-1 inline-flex items-center gap-1 text-[11.5px] font-medium text-amber-600">
-                        <CalendarClock className="h-3 w-3" />
-                        {blog.scheduledAtLabel}
+                      <div className="inline-flex max-w-full items-center gap-1.5 rounded-md bg-amber-50 px-2 py-1 text-[11px] font-medium leading-4 text-amber-700">
+                        <CalendarClock className="h-3.5 w-3.5 shrink-0" />
+                        <span className="truncate">
+                          {blog.scheduledAtLabel}
+                        </span>
                       </div>
                     )}
                   </div>
 
-                  <div className="flex flex-col gap-2">
+                  {/* Publishing status */}
+                  <div className="flex min-w-0 flex-col items-start gap-3">
                     {renderPublishBadge(blog)}
-                    {renderVisibilitySwitch(blog)}
+                    <div className="flex min-w-0 items-center">
+                      {renderVisibilitySwitch(blog)}
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-end gap-1">
-                    {blog.canViewPublic ? (
+                  {/* Actions */}
+                  <div className="flex min-w-0 flex-col items-end gap-3">
+                    <div className="flex items-center justify-end gap-2">
+                      {blog.canViewPublic ? (
+                        <Link
+                          href={`/${blog.blogID}`}
+                          title="View blog"
+                          aria-label="View blog"
+                          className={`${iconButton} rounded-lg border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600`}
+                        >
+                          <Eye className="h-4 w-4" />
+                        </Link>
+                      ) : (
+                        <span
+                          title="Not publicly visible yet"
+                          aria-label="Not publicly visible yet"
+                          className={`${iconButton} cursor-not-allowed rounded-lg border border-slate-100 bg-slate-50 text-slate-300`}
+                        >
+                          <Eye className="h-4 w-4" />
+                        </span>
+                      )}
+
                       <Link
-                        href={`/${blog.blogID}`}
-                        title="View blog"
-                        className={`${iconButton} hover:bg-blue-50 hover:text-blue-600`}
+                        title="Edit blog"
+                        aria-label="Edit blog"
+                        href={editHref(blog)}
+                        className={`${iconButton} rounded-lg border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-200 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-600`}
                       >
-                        <Eye className="h-4 w-4" />
+                        <Pencil className="h-4 w-4" />
                       </Link>
-                    ) : (
-                      <span
-                        title="Not publicly visible yet"
-                        className={`${iconButton} cursor-not-allowed text-slate-300 hover:translate-y-0 hover:shadow-none`}
+
+                      <button
+                        type="button"
+                        title="Delete blog"
+                        aria-label="Delete blog"
+                        onClick={() => handleDataDeleteModal(blog.blogID)}
+                        className={`${iconButton} cursor-pointer rounded-lg border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-200 hover:border-red-200 hover:bg-red-50 hover:text-red-600`}
                       >
-                        <Eye className="h-4 w-4" />
-                      </span>
-                    )}
-                    <Link
-                      title="Edit blog"
-                      href={editHref(blog)}
-                      className={`${iconButton} hover:bg-emerald-50 hover:text-emerald-600`}
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Link>
-                    <button
-                      type="button"
-                      title="Delete blog"
-                      onClick={() => handleDataDeleteModal(blog.blogID)}
-                      className={`${iconButton} cursor-pointer hover:bg-red-50 hover:text-red-600`}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+
+                   
+{blog.publishLabel === "draft" && (
+  <label
+    onClick={async (e) => {
+      e.preventDefault();
+
+      if (loadingBlogId) return;
+
+      if (!blog.mongoID) {
+        alert("Invalid Blog ID");
+        return;
+      }
+
+      try {
+        setLoadingBlogId(blog.mongoID);
+
+        const res = await axios.patch(
+          `/api/manage_blog/update-publish-status/${blog.mongoID}`
+        );
+
+        alert(res.data.message);
+
+        // Refresh blog data after successful publishing
+        window.location.reload();
+      } catch (error) {
+        console.error("Failed to publish blog:", error);
+        alert("Failed to publish blog. Please try again.");
+      } finally {
+        setLoadingBlogId(null);
+      }
+    }}
+    className={`inline-flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-sm transition-colors duration-200 ${
+      loadingBlogId
+        ? "cursor-not-allowed opacity-60"
+        : "cursor-pointer hover:border-[#C59D4F]/40 hover:bg-amber-50/50"
+    }`}
+  >
+    <input
+      type="checkbox"
+      className="peer sr-only"
+      defaultChecked={false}
+      disabled={loadingBlogId === blog.mongoID}
+      aria-label="Remove from draft"
+    />
+
+    <span className="relative h-5 w-9 shrink-0 rounded-full bg-slate-300 transition-colors duration-200 peer-checked:bg-emerald-600 peer-checked:[&>span]:translate-x-4 peer-focus-visible:ring-4 peer-focus-visible:ring-emerald-100">
+      <span className="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-200" />
+    </span>
+
+    <span className="flex items-center gap-1.5 whitespace-nowrap text-[11px] font-semibold text-slate-600">
+      {loadingBlogId === blog.mongoID ? (
+        <>
+          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+          Publishing...
+        </>
+      ) : (
+        "Remove From Draft"
+      )}
+    </span>
+  </label>
+)}
+
                   </div>
                 </div>
               ))}
@@ -1275,7 +1426,9 @@ export default function ManageBlogs() {
                 >
                   <div className="relative">
                     {renderThumb(blog, "lg")}
-                    <div className="absolute left-3 top-3">{renderPublishBadge(blog)}</div>
+                    <div className="absolute left-3 top-3">
+                      {renderPublishBadge(blog)}
+                    </div>
                   </div>
                   <div className="p-4">
                     <Link
@@ -1320,7 +1473,9 @@ export default function ManageBlogs() {
                         <button
                           type="button"
                           title="Delete blog"
-                          onClick={() => handleDataDeleteModal(blog.mongoID || blog.blogID)}
+                          onClick={() =>
+                            handleDataDeleteModal(blog.mongoID || blog.blogID)
+                          }
                           className={`${iconButton} cursor-pointer hover:bg-red-50 hover:text-red-600`}
                         >
                           <Trash2 className="h-4 w-4" />
@@ -1338,8 +1493,9 @@ export default function ManageBlogs() {
         {!isInitialLoading && llength > 0 && (
           <div className="flex flex-col items-center justify-between gap-3 border-t border-slate-100 px-5 py-3.5 sm:flex-row">
             <p className="text-xs text-slate-500 tabular-nums">
-              Page <span className="font-semibold text-[#0B1623]">{activePage}</span> of{" "}
-              <span className="font-semibold text-[#0B1623]">{ttPage}</span>
+              Page{" "}
+              <span className="font-semibold text-[#0B1623]">{activePage}</span>{" "}
+              of <span className="font-semibold text-[#0B1623]">{ttPage}</span>
             </p>
             <div className="flex items-center gap-1">
               <button
@@ -1353,7 +1509,10 @@ export default function ManageBlogs() {
               </button>
               {pageNumbers.map((p, i) =>
                 p === "gap" ? (
-                  <span key={`gap-${i}`} className="px-1.5 text-xs text-slate-400">
+                  <span
+                    key={`gap-${i}`}
+                    className="px-1.5 text-xs text-slate-400"
+                  >
                     …
                   </span>
                 ) : (
@@ -1370,7 +1529,7 @@ export default function ManageBlogs() {
                   >
                     {p}
                   </button>
-                )
+                ),
               )}
               <button
                 type="button"
@@ -1390,7 +1549,10 @@ export default function ManageBlogs() {
         {deleteBlog && (
           <motion.div
             className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-            style={{ background: "rgba(11,22,35,0.55)", backdropFilter: "blur(8px)" }}
+            style={{
+              background: "rgba(11,22,35,0.55)",
+              backdropFilter: "blur(8px)",
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -1413,7 +1575,8 @@ export default function ManageBlogs() {
                       Delete this blog?
                     </h2>
                     <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                      Are you sure you want to delete &quot;{deleteBlog.blogTitle}
+                      Are you sure you want to delete &quot;
+                      {deleteBlog.blogTitle}
                       &quot;? This cannot be undone.
                     </p>
                   </div>
