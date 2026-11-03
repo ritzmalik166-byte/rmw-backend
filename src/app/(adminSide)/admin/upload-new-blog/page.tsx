@@ -108,7 +108,7 @@ export default function UploadNewBlogPage() {
     const fetchCategories = async () => {
       try {
         const { data } = await axios.get("/api/ritzCats/getAllCats");
-        setCategories(data.allCategories || []);
+        setCategories(data.categories || []);
       } catch {
         setError("Could not load categories. Please refresh the page.");
       }

@@ -80,7 +80,7 @@ const Page: React.FC = () => {
   async function fetchAllTheCategory() {
     try {
       const { data } = await axios.get(`/api/ritzCats/getAllCats`);
-      setRitzCategory(data.allCategories);
+      setRitzCategory(data.categories);
     } catch (error) {
       console.error(error);
       alert("Internal Server Error In Fetching All Categories!");
