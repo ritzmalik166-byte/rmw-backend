@@ -15,6 +15,7 @@ export async function POST(req: NextRequest) {
   try {
     // Parse form data
     const formData = await req.formData();
+    
 
     // Extract form values
     const category_id = formData.get("category_id") as string;
