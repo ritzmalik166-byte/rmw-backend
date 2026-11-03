@@ -137,47 +137,47 @@ const STATUS_CARDS: {
   accent: string;
   tint: string;
 }[] = [
-  {
-    key: "all",
-    label: "All blogs",
-    hint: "CMS + legacy archive",
-    icon: Layers,
-    accent: "#0B1623",
-    tint: "rgba(11,22,35,0.07)",
-  },
-  {
-    key: "published",
-    label: "Published",
-    hint: "Live on the website",
-    icon: CircleCheck,
-    accent: "#059669",
-    tint: "rgba(16,185,129,0.12)",
-  },
-  {
-    key: "scheduled",
-    label: "Scheduled",
-    hint: "Queued to go live",
-    icon: CalendarClock,
-    accent: "#D97706",
-    tint: "rgba(245,158,11,0.14)",
-  },
-  {
-    key: "draft",
-    label: "Drafts",
-    hint: "Work in progress",
-    icon: PencilLine,
-    accent: "#475569",
-    tint: "rgba(100,116,139,0.14)",
-  },
-  {
-    key: "inactive",
-    label: "Inactive",
-    hint: "Hidden from readers",
-    icon: EyeOff,
-    accent: "#DC2626",
-    tint: "rgba(239,68,68,0.1)",
-  },
-];
+    {
+      key: "all",
+      label: "All blogs",
+      hint: "CMS + legacy archive",
+      icon: Layers,
+      accent: "#0B1623",
+      tint: "rgba(11,22,35,0.07)",
+    },
+    {
+      key: "published",
+      label: "Published",
+      hint: "Live on the website",
+      icon: CircleCheck,
+      accent: "#059669",
+      tint: "rgba(16,185,129,0.12)",
+    },
+    {
+      key: "scheduled",
+      label: "Scheduled",
+      hint: "Queued to go live",
+      icon: CalendarClock,
+      accent: "#D97706",
+      tint: "rgba(245,158,11,0.14)",
+    },
+    {
+      key: "draft",
+      label: "Drafts",
+      hint: "Work in progress",
+      icon: PencilLine,
+      accent: "#475569",
+      tint: "rgba(100,116,139,0.14)",
+    },
+    {
+      key: "inactive",
+      label: "Inactive",
+      hint: "Hidden from readers",
+      icon: EyeOff,
+      accent: "#DC2626",
+      tint: "rgba(239,68,68,0.1)",
+    },
+  ];
 
 const EMPTY_MESSAGES: Record<StatusFilter, string> = {
   all: "No blogs found.",
@@ -807,10 +807,10 @@ export default function ManageBlogs() {
   const toggleVisibility = (blog: MERGEDBLOGS) =>
     blog.blogIMG.includes("/images")
       ? handleActiveBtnToggle(
-          blog.blogStatus,
-          "mongo",
-          blog.mongoID ? blog.mongoID : blog.blogID,
-        )
+        blog.blogStatus,
+        "mongo",
+        blog.mongoID ? blog.mongoID : blog.blogID,
+      )
       : handleActiveBtnToggle(blog.blogStatus, "mysql", blog.blogID);
 
   const renderThumb = (blog: MERGEDBLOGS, size: "sm" | "lg") => {
@@ -867,16 +867,14 @@ export default function ManageBlogs() {
         className="group/switch inline-flex w-fit cursor-pointer items-center gap-2 text-[12px] font-medium text-slate-600"
       >
         <span
-          className={`relative inline-flex h-[18px] w-8 items-center rounded-full transition-colors duration-200 ${
-            isActive
+          className={`relative inline-flex h-[18px] w-8 items-center rounded-full transition-colors duration-200 ${isActive
               ? "bg-emerald-500"
               : "bg-slate-300 group-hover/switch:bg-slate-400"
-          }`}
+            }`}
         >
           <span
-            className={`absolute h-3.5 w-3.5 rounded-full bg-white shadow-sm transition-transform duration-200 ${
-              isActive ? "translate-x-[16px]" : "translate-x-[2px]"
-            }`}
+            className={`absolute h-3.5 w-3.5 rounded-full bg-white shadow-sm transition-transform duration-200 ${isActive ? "translate-x-[16px]" : "translate-x-[2px]"
+              }`}
           />
         </span>
         <span className="capitalize">{blog.blogStatus}</span>
@@ -1058,11 +1056,10 @@ export default function ManageBlogs() {
               type="button"
               onClick={() => setStatusFilter(card.key)}
               aria-pressed={isActive}
-              className={`group relative cursor-pointer overflow-hidden rounded-2xl border bg-white p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-12px_rgba(16,24,40,0.18)] ${
-                isActive
+              className={`group relative cursor-pointer overflow-hidden rounded-2xl border bg-white p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-12px_rgba(16,24,40,0.18)] ${isActive
                   ? "border-transparent shadow-[0_12px_28px_-12px_rgba(16,24,40,0.22)] ring-2 ring-[#C59D4F]/70"
                   : "border-slate-200/70 shadow-[0_1px_2px_rgba(16,24,40,0.04)]"
-              }`}
+                }`}
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -1272,11 +1269,10 @@ export default function ManageBlogs() {
                         )}
 
                         <span
-                          className={`rounded-md px-2 py-1 text-[10px] font-semibold ${
-                            blog.mongoID
+                          className={`rounded-md px-2 py-1 text-[10px] font-semibold ${blog.mongoID
                               ? "border border-[#C59D4F]/20 bg-[#C59D4F]/10 text-[#9A7530]"
                               : "border border-slate-200 bg-slate-100 text-slate-500"
-                          }`}
+                            }`}
                         >
                           {blog.mongoID ? "CMS" : "Legacy"}
                         </span>
@@ -1350,67 +1346,66 @@ export default function ManageBlogs() {
                       </button>
                     </div>
 
-                   
-{blog.publishLabel === "draft" && (
-  <label
-    onClick={async (e) => {
-      e.preventDefault();
 
-      if (loadingBlogId) return;
+                    {blog.publishLabel === "draft" && (
+                      <label
+                        onClick={async (e) => {
+                          e.preventDefault();
 
-      if (!blog.mongoID) {
-        alert("Invalid Blog ID");
-        return;
-      }
+                          if (loadingBlogId) return;
 
-      try {
-        setLoadingBlogId(blog.mongoID);
+                          if (!blog.mongoID) {
+                            alert("Invalid Blog ID");
+                            return;
+                          }
 
-        const res = await axios.patch(
-          `/api/manage_blog/update-publish-status/${blog.mongoID}`
-        );
+                          try {
+                            setLoadingBlogId(blog.mongoID);
 
-        alert(res.data.message);
+                            const res = await axios.patch(
+                              `/api/manage_blog/update-publish-status/${blog.mongoID}`
+                            );
 
-        // Refresh blog data after successful publishing
-        window.location.reload();
-      } catch (error) {
-        console.error("Failed to publish blog:", error);
-        alert("Failed to publish blog. Please try again.");
-      } finally {
-        setLoadingBlogId(null);
-      }
-    }}
-    className={`inline-flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-sm transition-colors duration-200 ${
-      loadingBlogId
-        ? "cursor-not-allowed opacity-60"
-        : "cursor-pointer hover:border-[#C59D4F]/40 hover:bg-amber-50/50"
-    }`}
-  >
-    <input
-      type="checkbox"
-      className="peer sr-only"
-      defaultChecked={false}
-      disabled={loadingBlogId === blog.mongoID}
-      aria-label="Remove from draft"
-    />
+                            alert(res.data.message);
 
-    <span className="relative h-5 w-9 shrink-0 rounded-full bg-slate-300 transition-colors duration-200 peer-checked:bg-emerald-600 peer-checked:[&>span]:translate-x-4 peer-focus-visible:ring-4 peer-focus-visible:ring-emerald-100">
-      <span className="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-200" />
-    </span>
+                            // Refresh blog data after successful publishing
+                            window.location.reload();
+                          } catch (error) {
+                            console.error("Failed to publish blog:", error);
+                            alert("Failed to publish blog. Please try again.");
+                          } finally {
+                            setLoadingBlogId(null);
+                          }
+                        }}
+                        className={`inline-flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-sm transition-colors duration-200 ${loadingBlogId
+                            ? "cursor-not-allowed opacity-60"
+                            : "cursor-pointer hover:border-[#C59D4F]/40 hover:bg-amber-50/50"
+                          }`}
+                      >
+                        <input
+                          type="checkbox"
+                          className="peer sr-only"
+                          defaultChecked={false}
+                          disabled={loadingBlogId === blog.mongoID}
+                          aria-label="Remove from draft"
+                        />
 
-    <span className="flex items-center gap-1.5 whitespace-nowrap text-[11px] font-semibold text-slate-600">
-      {loadingBlogId === blog.mongoID ? (
-        <>
-          <Loader2 className="h-3.5 w-3.5 animate-spin" />
-          Publishing...
-        </>
-      ) : (
-        "Remove From Draft"
-      )}
-    </span>
-  </label>
-)}
+                        <span className="relative h-5 w-9 shrink-0 rounded-full bg-slate-300 transition-colors duration-200 peer-checked:bg-emerald-600 peer-checked:[&>span]:translate-x-4 peer-focus-visible:ring-4 peer-focus-visible:ring-emerald-100">
+                          <span className="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-200" />
+                        </span>
+
+                        <span className="flex items-center gap-1.5 whitespace-nowrap text-[11px] font-semibold text-slate-600">
+                          {loadingBlogId === blog.mongoID ? (
+                            <>
+                              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                              Publishing...
+                            </>
+                          ) : (
+                            "Remove From Draft"
+                          )}
+                        </span>
+                      </label>
+                    )}
 
                   </div>
                 </div>
@@ -1521,11 +1516,10 @@ export default function ManageBlogs() {
                     type="button"
                     onClick={(e) => directPageNavigation(e.currentTarget)}
                     aria-current={p === activePage ? "page" : undefined}
-                    className={`h-8 min-w-8 cursor-pointer rounded-lg px-2 text-xs font-semibold tabular-nums transition ${
-                      p === activePage
+                    className={`h-8 min-w-8 cursor-pointer rounded-lg px-2 text-xs font-semibold tabular-nums transition ${p === activePage
                         ? "bg-[#0B1623] text-white shadow-[0_4px_10px_rgba(11,22,35,0.2)]"
                         : "text-slate-600 hover:bg-slate-100"
-                    }`}
+                      }`}
                   >
                     {p}
                   </button>

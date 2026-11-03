@@ -74,7 +74,7 @@ const Page = () => {
     const fetchAllCategories = async () => {
       try {
         const { data } = await axios.get(`/api/ritzCats/getAllCats`);
-        setRitzCategory(data.allCategories);
+        setRitzCategory(data.categories);
       } catch {
         setError("Could not load categories. Please refresh the page.");
       }

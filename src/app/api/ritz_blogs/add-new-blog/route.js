@@ -14,6 +14,7 @@ import {
   normalizeSlug,
 } from "@/lib/slugify";
 import { BLOG_AUTHORS, isBlogAuthor } from "@/lib/blogAuthors";
+import { getDBPool } from "@/lib/db";
 
 export function generateSlug(title) {
   return generateSlugFromTitle(title);
@@ -50,7 +51,10 @@ export async function POST(request) {
     await connectMongoDB();
     const token = request.headers.get("Authorization")?.split(" ")[1];
     if (!token) {
-      return NextResponse.json({ message: "Token is required" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Token is required" },
+        { status: 400 },
+      );
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     if (!decoded) {
@@ -76,18 +80,26 @@ export async function POST(request) {
     const scheduledAtRaw = formData.get("scheduledAt");
 
     if (!blogTitle) {
-      return NextResponse.json({ message: "Blog title is required" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Blog title is required" },
+        { status: 400 },
+      );
     }
 
     if (!blogAuthorRaw || !isBlogAuthor(blogAuthorRaw)) {
       return NextResponse.json(
-        { message: `Please select a valid author (${BLOG_AUTHORS.join(", ")})` },
-        { status: 400 }
+        {
+          message: `Please select a valid author (${BLOG_AUTHORS.join(", ")})`,
+        },
+        { status: 400 },
       );
     }
 
     if (!["draft", "scheduled", "published"].includes(publishStatus)) {
-      return NextResponse.json({ message: "Invalid publish status" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Invalid publish status" },
+        { status: 400 },
+      );
     }
 
     let scheduledAt = null;
@@ -95,14 +107,14 @@ export async function POST(request) {
       if (!scheduledAtRaw) {
         return NextResponse.json(
           { message: "Schedule date and time are required" },
-          { status: 400 }
+          { status: 400 },
         );
       }
       scheduledAt = new Date(String(scheduledAtRaw));
       if (Number.isNaN(scheduledAt.getTime()) || scheduledAt <= new Date()) {
         return NextResponse.json(
           { message: "Scheduled time must be in the future" },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -117,21 +129,22 @@ export async function POST(request) {
           message:
             "A valid slug URL is required (letters, numbers, and hyphens only)",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     const { blogSlug, existingSlug } = await resolveUniqueSlug(
       baseSlug,
-      publishStatus
+      publishStatus,
     );
 
     if (existingSlug) {
       return NextResponse.json(
         {
-          message: "This slug URL is already in use. Please choose a different one.",
+          message:
+            "This slug URL is already in use. Please choose a different one.",
         },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -139,20 +152,119 @@ export async function POST(request) {
       ? await RitzCats.findOne({ categorySlug: blogCategory })
       : null;
 
+    if (!fetchCat && blogCategory === "case-study") {
+   try {
+       const pool = getDBPool();
+ 
+       const [rows] = await pool.execute(
+         "SELECT * FROM categories WHERE link = ?",
+         [blogCategory],
+       );
+ 
+       const data = rows;
+       fetchCat = data[0];
+ 
+       if (fetchCat) {
+         // Create new FormData for MySQL API
+         const mysqlFormData = new FormData();
+ 
+         mysqlFormData.append("category_id", String(fetchCat.id));
+         mysqlFormData.append("title", blogTitle);
+         mysqlFormData.append("slug", String(blogSlugInput || ""));
+         mysqlFormData.append("meta_title", String(mtDesc || ""));
+         mysqlFormData.append("meta_description", String(mtDesc || ""));
+         mysqlFormData.append("meta_keywords", String(metaKeywords || ""));
+         let blogBodyParsed = [];
+ 
+         try {
+           blogBodyParsed = JSON.parse(String(blogBodyRaw || "[]"));
+         } catch {
+           blogBodyParsed = [];
+         }
+ 
+         if (!Array.isArray(blogBodyParsed) || blogBodyParsed.length === 0) {
+           blogBodyParsed = [
+             {
+               metaTitle: blogTitle,
+               metaDescription: "",
+             },
+           ];
+         }
+ 
+         const blogBody = blogBodyParsed.map((item) => ({
+           metaTitle: item.metaTitle || blogTitle,
+           metaDescription: item.metaDescription || "",
+         }));
+ 
+         // Extract actual description from content blocks
+         const blogDescription =
+           blogBody.find(
+             (item) => String(item.metaDescription || "").trim().length > 0,
+           )?.metaDescription ||
+           blogBody[0]?.metaDescription ||
+           "";
+         mysqlFormData.append("description", String(blogDescription || ""));
+ 
+         // Map existing blog banner
+         const blogBanner = formData.get("blogBanner");
+         if (blogBanner instanceof File) {
+           mysqlFormData.append("blogImage", blogBanner);
+         }
+ 
+         // Call MySQL API
+         const response = await fetch(
+           `${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/blog/addBlogs`,
+           {
+             method: "POST",
+             body: mysqlFormData,
+           },
+         );
+ 
+         const result = await response.json();
+ 
+         if (!response.ok) {
+           throw new Error(
+             result.error || "Failed to create Case Study in MySQL",
+           );
+         }
+          return NextResponse.json(
+           {
+             message: "Casy Study Post Sucessfully!",
+             blog: result,
+             scheduledAt: "",
+           },
+           { status: 201 },
+         );
+       }
+   } catch (error) {
+    console.log("Internal Server Error ", error);
+    
+   }
+    }
+
     if (!fetchCat && publishStatus === "draft") {
       fetchCat = await RitzCats.findOne().sort({ createdAt: 1 });
     }
 
     if (!fetchCat) {
-      return NextResponse.json({ message: "Category not found" }, { status: 404 });
+      return NextResponse.json(
+        { message: "Category not found" },
+        { status: 404 },
+      );
     }
 
     if (publishStatus === "published") {
       if (!blogCategory || blogCategory === "none-selected") {
-        return NextResponse.json({ message: "Please select a category" }, { status: 400 });
+        return NextResponse.json(
+          { message: "Please select a category" },
+          { status: 400 },
+        );
       }
       if (!mtDesc) {
-        return NextResponse.json({ message: "Meta description is required" }, { status: 400 });
+        return NextResponse.json(
+          { message: "Meta description is required" },
+          { status: 400 },
+        );
       }
     }
 
@@ -176,7 +288,7 @@ export async function POST(request) {
     if (publishStatus === "published" && !blogBannerPath) {
       return NextResponse.json(
         { message: "Cover image is required to publish" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -204,18 +316,19 @@ export async function POST(request) {
 
     if (publishStatus === "published") {
       const hasContent = blogBody.some(
-        (item) => String(item.metaDescription || "").trim().length > 0
+        (item) => String(item.metaDescription || "").trim().length > 0,
       );
       if (!hasContent) {
         return NextResponse.json(
           { message: "Add page content before publishing" },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
 
     const blogDescription =
-      blogBody.find((item) => String(item.metaDescription || "").trim())?.metaDescription ||
+      blogBody.find((item) => String(item.metaDescription || "").trim())
+        ?.metaDescription ||
       blogBody[0]?.metaDescription ||
       "";
 
@@ -258,9 +371,8 @@ export async function POST(request) {
     await newManagementActivity.save();
 
     if (publishStatus === "scheduled") {
-      const { ensureScheduledBlogScheduler } = await import(
-        "@/lib/scheduledBlogScheduler"
-      );
+      const { ensureScheduledBlogScheduler } =
+        await import("@/lib/scheduledBlogScheduler");
       ensureScheduledBlogScheduler();
     }
 
@@ -282,23 +394,28 @@ export async function POST(request) {
             ? scheduledAt.toISOString()
             : undefined,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     if (error?.code === 11000) {
       const field = Object.keys(error.keyPattern || {})[0] || "field";
-      const friendlyField = field === "blogTitle" ? "title" : field === "blogSlug" ? "URL slug" : field;
+      const friendlyField =
+        field === "blogTitle"
+          ? "title"
+          : field === "blogSlug"
+            ? "URL slug"
+            : field;
       return NextResponse.json(
         {
           message: `A blog with this ${friendlyField} already exists. Please use a different ${friendlyField} or edit the existing blog.`,
         },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
     return NextResponse.json(
       { message: "Internal Server Error", error: error.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
