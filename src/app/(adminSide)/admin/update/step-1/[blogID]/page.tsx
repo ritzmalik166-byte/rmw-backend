@@ -232,7 +232,7 @@ const Page = () => {
     const fetchAllCategories = async () => {
       try {
         const { data } = await axios.get(`/api/ritzCats/getAllCats`);
-        setRitzCategory(data.allCategories);
+        setRitzCategory(data.categories);
       } catch (error) {
         console.log(error);
         alert("Internal Server Error In Fetching All Categories!");

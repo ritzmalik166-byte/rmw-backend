@@ -456,11 +456,11 @@ export async function buildMongoCategoryLookup(): Promise<CategoryNameLookup> {
   try {
     const { data } = await axios.get<{
       success: boolean;
-      allCategories: Array<{ _id: string; categoryName: string }>;
+      categories: Array<{ _id: string; categoryName: string }>;
     }>("/api/ritzCats/getAllCats");
 
     const lookup: CategoryNameLookup = {};
-    for (const category of data?.allCategories || []) {
+    for (const category of data?.categories || []) {
       lookup[String(category._id)] = category.categoryName;
     }
     return lookup;
